@@ -1,0 +1,10 @@
+- name: Data access with earthaccess
+  website: https://earthaccess.readthedocs.io/en/latest/tutorials/file-access/
+  repository: https://github.com/nsidc/earthaccess
+  image: 
+- name: Data access with icepyx
+  website: https://icepyx.readthedocs.io/en/latest/example_notebooks/IS2_data_access.html
+  repository: https://github.com/icesat2py/icepyx
+  image: https://icepyx.readthedocs.io/en/latest/_static/icepyx_v2_oval_orig_nobackgr.png
+
+  

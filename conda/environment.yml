@@ -8,14 +8,16 @@ channels:
   - conda-forge
 dependencies:
   - ipyleaflet
-  - jupyter-book<2
+  - jupyter-book
   - jupyter-resource-usage
   - jupyterhub-singleuser
   - jupyterlab
   - jupytext
   - pip
   - python
+  - sphinx
   - sphinxcontrib-bibtex
+  - yaml
   # For building the Splashpage
   - cookiecutter
   # Dependencies of jinja-markdown:
