@@ -10,16 +10,16 @@ parse:
   # https://jupyterbook.org/content/content-blocks.html?highlight=myst%20substitution#define-substitutions-for-your-whole-book
   # https://jupyterbook.org/content/content-blocks.html#using-substitutions-in-links
   myst_substitutions:
-    hackweek: "uwhackweek"
-    dates: "October ? to ?, 2021"
-    github_org_url: "https://github.com/uwhackweek"
-    book_repo: "jupyterbook-template"
-    website_url: "https://book-template.hackweek.io"
-    jupyterhub_url: "https://INSERT_JUPYTERHUB_URL"
-    slack_workspace_url: "https://INSERT_SLACK_URL"
-    contact_email: "INSERT_CONTACT_EMAIL@UW.COM"
+    hackweek: "ICESat-2 Hackweek"
+    dates: "Aug 19-23, 2024"
+    github_org_url: "https://github.com/ICESAT-2HackWeek"
+    book_repo: "website-2024"
+    website_url: "https://icesat-2.hackweek.io"
+    jupyterhub_url: "https://hub.cryointhecloud.com/"
+    slack_workspace_url: "https://2024-uw-hackweek.slack.com"
+    contact_email: "escience-hackweeks@uw.edu"
     dataset: "INSERT_DATA_SET_NAME"
-    anon_reporting_url: "https://INSERT_FORM_LINK"
+    anon_reporting_url: "https://bit.ly/uwhackweekfeedback"
     project_spreadsheet_url: "https://INSERT_GOOGLE_SHEET"
   myst_enable_extensions:
     # Defaults
