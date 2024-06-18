@@ -15,9 +15,7 @@ dependencies:
   - jupytext
   - pip
   - python
-  - sphinx
   - sphinxcontrib-bibtex
-  - yaml
   # For building the Splashpage
   - cookiecutter
   # Dependencies of jinja-markdown:
