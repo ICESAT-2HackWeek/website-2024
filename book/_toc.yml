@@ -32,5 +32,6 @@ parts:
   chapters:
     - file: reference/glossary
     - file: reference/bibliography
+    - file: reference/IS2-resources
     - file: reference/questions
 
