@@ -10,4 +10,8 @@
   website: https://slideruleearth.io/rtd/getting_started/Examples.html
   repository: https://github.com/SlideRuleEarth/sliderule
   image: https://avatars.githubusercontent.com/u/63428847?s=200&v=4
+- name: Download and plot ATL08
+  website: https://nasa-openscapes.github.io/2023-ssc/tutorials/data-access/icepyx.html
+  repository: https://github.com/NASA-Openscapes/2023-ssc
+  imate: https://raw.githubusercontent.com/NASA-Openscapes/media/main/images/scc/espacio-logo.png
   
