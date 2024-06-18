@@ -6,7 +6,7 @@
   website: https://icepyx.readthedocs.io/en/latest/example_notebooks/IS2_data_access.html
   repository: https://github.com/icesat2py/icepyx
   image: https://icepyx.readthedocs.io/en/latest/_static/icepyx_v2_oval_orig_nobackgr.png
-- name: Data access with sliderule
+- name: Data access with SlideRule
   website: https://slideruleearth.io/rtd/getting_started/Examples.html
   repository: https://github.com/SlideRuleEarth/sliderule
   image: https://avatars.githubusercontent.com/u/63428847?s=200&v=4
