@@ -1,4 +1,4 @@
-# from https://github.com/excutablebooks meta/docs/conf.py
+# from https://github.com/executablebooks/meta/blob/b627cdf10477e4bdf651bc86043a3fca1cc8d130/docs/conf.py
 
 from pathlib import Path
 import random
