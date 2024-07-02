@@ -30,10 +30,17 @@ check_success() {
   fi
 }
 
+<<<<<<< HEAD
 #printf "Building the splash page -"
 #cookiecutter ../. -f --no-input -o ../book/_build
 
 #check_success
+=======
+printf "Building the splash page -"
+cookiecutter ../. -f --no-input -o ../book/_build
+
+check_success
+>>>>>>> 5893fa3d37cfbf5e273404627e501c0f8869e56c
 
 echo "Building the Jupyter Book"
 cd ../

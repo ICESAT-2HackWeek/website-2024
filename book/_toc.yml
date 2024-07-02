@@ -7,9 +7,15 @@ parts:
   chapters:
     - file: logistics
     - title: Schedule
+<<<<<<< HEAD
       url: https://2024.hackweek.io/index.html?jump_to=schedule
     - title: Team
       url: https://2024.hackweek.io/index.html?jump_to=team
+=======
+      url: https://uwhackweek.github.io/jupyterbook-template/index.html?jump_to=schedule
+    - title: Team
+      url: https://uwhackweek.github.io/jupyterbook-template/index.html?jump_to=team
+>>>>>>> 5893fa3d37cfbf5e273404627e501c0f8869e56c
     - file: CoC
 - caption: Preparation
   chapters:
@@ -23,15 +29,22 @@ parts:
         - file: tutorials/example/tutorial-notebook
 - caption: Projects
   chapters:
+<<<<<<< HEAD
     - file: projects/list_of_projects
     - file: projects/index
       sections:
         - file: projects/project_roadmap
         - file: projects/project_initialization
+=======
+    - file: projects/index
+>>>>>>> 5893fa3d37cfbf5e273404627e501c0f8869e56c
 - caption: Reference
   chapters:
     - file: reference/glossary
     - file: reference/bibliography
+<<<<<<< HEAD
     - file: reference/IS2-resources
+=======
+>>>>>>> 5893fa3d37cfbf5e273404627e501c0f8869e56c
     - file: reference/questions
 

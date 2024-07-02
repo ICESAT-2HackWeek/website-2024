@@ -31,4 +31,8 @@ jobs:
           source_repo_path: uwhackweek/jupyterbook-template
           upstream_branch: main # defaults to main
           is_force_deletion: True
+<<<<<<< HEAD
           git_remote_pull_params: --allow-unrelated-histories --strategy=recursive --no-edit
+=======
+          git_remote_pull_params: --allow-unrelated-histories --squash --strategy=recursive -X theirs
+>>>>>>> 5893fa3d37cfbf5e273404627e501c0f8869e56c
