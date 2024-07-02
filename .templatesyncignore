@@ -2,3 +2,4 @@ cookiecutter.yaml
 conda/*lock.yml
 team/*-*
 book/_config.yml
+book/logo.png
