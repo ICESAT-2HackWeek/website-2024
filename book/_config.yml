@@ -49,7 +49,7 @@ latex:
 # Configure your Binder links, such as the URL of the BinderHub.
 launch_buttons:
   notebook_interface: jupyterlab
-  binderhub_url: "https://mybinder.org"
+  jupyterhub_url: "https://hub.cryointhecloud.com/"
 
 # Information about where the book exists on the web
 repository:
