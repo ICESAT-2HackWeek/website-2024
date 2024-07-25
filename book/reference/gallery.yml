@@ -14,4 +14,7 @@
   website: https://nasa-openscapes.github.io/2023-ssc/tutorials/data-access/icepyx.html
   repository: https://github.com/NASA-Openscapes/2023-ssc
   image: https://raw.githubusercontent.com/NASA-Openscapes/media/main/images/scc/espacio-logo.png
-  
+- name: ATL14/15 visualization and data extraction with IS2view
+  website: https://is2view.readthedocs.io/en/latest/user_guide/Examples.html
+  repository: https://github.com/tsutterley/IS2view
+  image: https://is2view.readthedocs.io/en/latest/_static/IS2view_logo.png
