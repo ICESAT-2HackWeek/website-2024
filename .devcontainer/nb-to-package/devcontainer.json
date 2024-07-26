@@ -1,0 +1,12 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+{
+  "image": "ghcr.io/uw-ssec/minimal:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-toolsai.jupyter", "ms-python.python"]
+    },
+    "codespaces": {
+      "openFiles": ["book/tutorials/nb-to-package/index.md"]
+    }
+  }
+}
