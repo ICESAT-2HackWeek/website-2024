@@ -1,5 +1,6 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
+  "name": "Notebooks to Packages",
   "image": "ghcr.io/uw-ssec/minimal:latest",
   "customizations": {
     "vscode": {
