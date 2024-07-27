@@ -10,3 +10,6 @@ most seen in the Research Community. This workflow often starts with
 a collection of Jupyter notebooks that are then later transformed into
 a Python package.
 
+```{tableofcontents}
+
+```

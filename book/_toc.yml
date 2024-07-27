@@ -21,7 +21,9 @@ parts:
     - file: tutorials/index
       sections:
         - file: tutorials/example/tutorial-notebook
-        - file: tutorials/nb-to-package/index.md
+        - file: tutorials/nb-to-package/index
+          sections:
+            - file: tutorials/nb-to-package/intro
 - caption: Projects
   chapters:
     - file: projects/list_of_projects
