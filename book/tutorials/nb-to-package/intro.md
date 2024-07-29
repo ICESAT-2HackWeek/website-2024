@@ -15,19 +15,24 @@ You might ask yourself:
 
 ## What is a Python package?
 
-A "package" or officially called a "distribution package" is a
-piece of software that can be installed and distributed
-for use by others. That's it. It's like installing an app on your phone.
+A "package" or officially called a "distribution package" is simply
+a directory of Python modules and sub-packages with an `__init__.py` file
+that allows for the modular organization of code.
+It can be be installed and distributed for use by others.
+That's it.
 
-Okay, great, but I've also heard the term "library" or "module", how do they relate?
+Okay, great, but I've also heard the term "library" and
+"module" was just mentioned above, how do they all relate?
 
 ### Module
 
-A single file of Python code that can be imported into Python
-scripts or other modules, also known officially as an "import package". This is the smallest unit of code reuse in Python.
+A module is a single file of Python code that can be imported into Python
+scripts or other modules,
+also known officially as an "import package".
+This is the smallest unit of code reuse in Python.
 You'll see these as `.py` files.
 
-As example, you can create a `hello_world` module by:
+As example, you can create a `hello_world` module by doing the following:
 
 1. Create a file called `hello_world.py` with the following content:
 
@@ -59,6 +64,22 @@ As it can be a collection of modules and packages that provide specific function
 Here's a hierarchy of Python terms from smallest to largest to help you understand the relationship between modules, packages, and libraries:
 
 <img src="../../img/code-to-package.png" alt="functions to libraries" width="200"/>
+
+A python package may look like the following:
+
+```console
+mypackage/
+    __init__.py
+    module1.py
+    module2.py
+    subpackage/
+        __init__.py
+        submodule1.py
+        submodule2.py
+
+```
+
+In practice, the term "library" often refers to a tool or set of tools that you can install and use in your projects, while a "package" is a way of organizing and distributing that code.
 
 ## Why package your code?
 
