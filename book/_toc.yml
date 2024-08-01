@@ -9,7 +9,7 @@ parts:
     - title: Schedule
       url: https://2024.hackweek.io/index.html?jump_to=schedule
     - title: Team
-      url: https://2024.hackweek.io/index.html?jump_to=schedule
+      url: https://2024.hackweek.io/index.html?jump_to=team
     - file: CoC
 - caption: Preparation
   chapters:

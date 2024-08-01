@@ -16,4 +16,8 @@ book/_config.yml
 book/logo.png
 ###
 # event-specific tutorials
-
+###
+# files you may want to exclude once you start using your template
+.gitignore
+README.md
+book/_toc.yml
