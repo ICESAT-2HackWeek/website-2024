@@ -24,6 +24,8 @@ parts:
         - file: tutorials/nb-to-package/index
           sections:
             - file: tutorials/nb-to-package/intro
+              sections:
+              - file: tutorials/nb-to-package/sample.ipynb
 - caption: Projects
   chapters:
     - file: projects/list_of_projects
