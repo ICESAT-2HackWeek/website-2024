@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: 92c7cfea4e300d76039e3694171eef24245b2e224148e35bb4866a982b8f6870
+    linux-64: b26b9ac4f1562a408ab5db5b7aaa4a3acf267963936df5f8cfabfbe32376bfe2
     osx-64: 1d5c6b89f68444adb9ca9f3a34614cff4dc97896d82e4793a19675f2c6df4830
     osx-arm64: 572635c5919484f759d7297e6b85af5c182d367aed29fc1ee770d644be19fefa
   channels:
@@ -43,11 +43,11 @@ package:
   platform: linux-64
   dependencies:
     _libgcc_mutex: '0.1'
-    libgomp: '>=7.5.0'
-  url: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_gnu.tar.bz2
+    llvm-openmp: '>=9.0.1'
+  url: https://conda.anaconda.org/conda-forge/linux-64/_openmp_mutex-4.5-2_kmp_llvm.tar.bz2
   hash:
-    md5: 73aaf86a425cc6e73fcf236a5a46396d
-    sha256: fbe2c5e56a653bebb982eda4876a9178aedfc2b545f25d0ce9c4c0b508253d22
+    md5: 562b26ba2e19059551a811e72ab7f793
+    sha256: 84a66275da3a66e3f3e70e9d8f10496d807d01a9e4ec16cd2274cc5e28c478fc
   category: main
   optional: false
 - name: accessible-pygments
@@ -12694,7 +12694,7 @@ package:
   category: main
   optional: false
 - name: langchain-core
-  version: 0.2.28
+  version: 0.2.29
   manager: conda
   platform: linux-64
   dependencies:
@@ -12705,10 +12705,10 @@ package:
     python: '>=3.8.1,<4.0'
     pyyaml: '>=5.3'
     tenacity: '>=8.1.0,!=8.4.0,<9.0.0'
-  url: https://conda.anaconda.org/conda-forge/noarch/langchain-core-0.2.28-pyhd8ed1ab_0.conda
+  url: https://conda.anaconda.org/conda-forge/noarch/langchain-core-0.2.29-pyhd8ed1ab_0.conda
   hash:
-    md5: ae5678f736426ff3f1672a3dced26e8c
-    sha256: 9b81d2d5cafc740e216d956bb370c08d3820864a7ceef9ee392967c9b0ba3c5b
+    md5: c4a714946a063f34b30b00befd380c1b
+    sha256: a8af73e3719429138d47f4aefc87e898ac438ac8237f12a447b499207dcb0d64
   category: main
   optional: false
 - name: langchain-core
@@ -15302,18 +15302,6 @@ package:
     sha256: 92f9ca586a0d8070ae2c8924cbc7cc4fd79d47ff9cce58336984c86a197ab181
   category: main
   optional: false
-- name: libgomp
-  version: 14.1.0
-  manager: conda
-  platform: linux-64
-  dependencies:
-    _libgcc_mutex: '0.1'
-  url: https://conda.anaconda.org/conda-forge/linux-64/libgomp-14.1.0-h77fa898_0.conda
-  hash:
-    md5: ae061a5ed5f05818acdf9adab72c146d
-    sha256: 7699df61a1f6c644b3576a40f54791561f2845983120477a16116b951c9cdb05
-  category: main
-  optional: false
 - name: libgoogle-cloud
   version: 2.26.0
   manager: conda
@@ -17393,6 +17381,27 @@ package:
     sha256: 6df3e129682f6dc43826e5028e1807624b2a7634c4becbb50e56be9f77167f25
   category: main
   optional: false
+- name: libtorch
+  version: 2.3.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    _openmp_mutex: '>=4.5'
+    libabseil: '>=20240116.2,<20240117.0a0'
+    libcblas: '>=3.9.0,<4.0a0'
+    libgcc-ng: '>=12'
+    libprotobuf: '>=4.25.3,<4.25.4.0a0'
+    libstdcxx-ng: '>=12'
+    libuv: '>=1.48.0,<2.0a0'
+    mkl: '>=2023.2.0,<2024.0a0'
+    sleef: '>=3.5.1,<4.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/libtorch-2.3.1-cpu_mkl_h0bb0d08_100.conda
+  hash:
+    md5: 7ecacfd9230bc1e57801649fe3066206
+    sha256: 0f9f896bace90b2eb0ebfcbeedd140be7743010985e47f74f2e38f0632bac5d2
+  category: main
+  optional: false
 - name: libudunits2
   version: 2.2.28
   manager: conda
@@ -17508,6 +17517,18 @@ package:
   hash:
     md5: 40b61aab5c7ba9ff276c41cfffe6b80b
     sha256: 787eb542f055a2b3de553614b25f09eefb0a0931b0c87dbcce6efdfd92f04f18
+  category: main
+  optional: false
+- name: libuv
+  version: 1.48.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libgcc-ng: '>=12'
+  url: https://conda.anaconda.org/conda-forge/linux-64/libuv-1.48.0-hd590300_0.conda
+  hash:
+    md5: 7e8b914b1062dd4386e3de4d82a3ead6
+    sha256: b7c0e8a0c93c2621be7645b37123d4e8d27e8a974da26a3fba47a9c37711aa7f
   category: main
   optional: false
 - name: libva
@@ -17888,6 +17909,19 @@ package:
   hash:
     md5: f1b64ca4faf563605cf6f6ca93f9ff3f
     sha256: aa99d44e8c83865026575a8af253141c53e0b3ab05f053befaa7757c8525064f
+  category: main
+  optional: false
+- name: llvm-openmp
+  version: 18.1.8
+  manager: conda
+  platform: linux-64
+  dependencies:
+    libzlib: '>=1.3.1,<2.0a0'
+    zstd: '>=1.5.6,<1.6.0a0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/llvm-openmp-18.1.8-hf5423f3_0.conda
+  hash:
+    md5: 322be9d39e030673e105b0abb320514e
+    sha256: b620c51d91e55958c91014d89793cd705b1044b5ab157deae9bf8bdb2f11c5a3
   category: main
   optional: false
 - name: llvm-openmp
@@ -18789,6 +18823,20 @@ package:
   hash:
     md5: 5cbee699846772cc939bef23a0d524ed
     sha256: f95cb70007e3cc2ba44e17c29a056b499e6dadf08746706d0c817c8e2f47e05c
+  category: main
+  optional: false
+- name: mkl
+  version: 2023.2.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    _openmp_mutex: '>=4.5'
+    llvm-openmp: '>=17.0.3'
+    tbb: 2021.*
+  url: https://conda.anaconda.org/conda-forge/linux-64/mkl-2023.2.0-h84fe81f_50496.conda
+  hash:
+    md5: 81d4a1a57d618adf0152db973d93b2ad
+    sha256: 046073737bf73153b0c39e343b197cdf0b7867d336962369407465a17ea5979a
   category: main
   optional: false
 - name: mpc
@@ -24314,6 +24362,37 @@ package:
     sha256: 4837089c477b9b84fa38a17f453e6634e68237267211b27a8a2f5ccd847f4e55
   category: main
   optional: false
+- name: pytorch
+  version: 2.3.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    _openmp_mutex: '>=4.5'
+    filelock: ''
+    fsspec: ''
+    jinja2: ''
+    libabseil: '>=20240116.2,<20240117.0a0'
+    libcblas: '>=3.9.0,<4.0a0'
+    libgcc-ng: '>=12'
+    libprotobuf: '>=4.25.3,<4.25.4.0a0'
+    libstdcxx-ng: '>=12'
+    libtorch: 2.3.1.*
+    libuv: '>=1.48.0,<2.0a0'
+    mkl: '>=2023.2.0,<2024.0a0'
+    networkx: ''
+    numpy: '>=1.19,<3'
+    python: '>=3.11,<3.12.0a0'
+    python_abi: 3.11.*
+    sleef: '>=3.5.1,<4.0a0'
+    sympy: ''
+    typing_extensions: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/pytorch-2.3.1-cpu_mkl_py311hcb16b95_100.conda
+  hash:
+    md5: 73df2c21364f6ab06556926cac7aff60
+    sha256: 3f4fa6d2087bb2a2d03d11ca066c6b8f56605516fcf6508c569779996900c2f5
+  category: main
+  optional: false
 - name: pytz
   version: '2024.1'
   manager: conda
@@ -26217,6 +26296,20 @@ package:
   hash:
     md5: e5f25f8dbc060e9a8d912e432202afc2
     sha256: a85c38227b446f42c5b90d9b642f2c0567880c15d72492d8da074a59c8f91dd6
+  category: main
+  optional: false
+- name: sleef
+  version: 3.6.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    _openmp_mutex: '>=4.5'
+    libgcc-ng: '>=12'
+  url: https://conda.anaconda.org/conda-forge/linux-64/sleef-3.6.1-h3400bea_1.conda
+  hash:
+    md5: ac00525f47c9fd0e0456a64caef525a6
+    sha256: 4d841e582fef207a7323351ae267e36870b2dd0aa59d01b482f9ba342af77325
   category: main
   optional: false
 - name: sliderule
@@ -29034,18 +29127,19 @@ package:
   category: main
   optional: false
 - name: watchfiles
-  version: 0.22.0
+  version: 0.23.0
   manager: conda
   platform: linux-64
   dependencies:
+    __glibc: '>=2.17,<3.0.a0'
     anyio: '>=3.0.0'
     libgcc-ng: '>=12'
     python: '>=3.11,<3.12.0a0'
     python_abi: 3.11.*
-  url: https://conda.anaconda.org/conda-forge/linux-64/watchfiles-0.22.0-py311h5ecf98a_0.conda
+  url: https://conda.anaconda.org/conda-forge/linux-64/watchfiles-0.23.0-py311hb3a8bbb_0.conda
   hash:
-    md5: 23e2f92fa88726f78dd6dacb5a7c0735
-    sha256: a6cc738e4b3fd1835e8407299684d8a910145b5435eace5641bee6584c9c5b8a
+    md5: b56abe639786d1f789178c44091a999e
+    sha256: 7042f2a696014f38921cc8a4b3e2961270496d24ba4fd0490a555d001d613133
   category: main
   optional: false
 - name: watchfiles
