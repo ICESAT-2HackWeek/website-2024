@@ -38,6 +38,7 @@ import geopandas as gpd
 import h5py
 import icepyx as ipx
 import s3fs
+import torch
 
 # %% [markdown]
 # ## Part 1: Convert ICESat-2 data into ML-ready format
@@ -175,9 +176,64 @@ gdf = gpd.read_parquet(path="ATL07_photons.gpq")
 
 # %%
 
-
 # %% [markdown]
 # ## Part 2: Choosing a Machine Learning algorithm
+
+# %% [markdown]
+# ### Moving data from CPU to GPU
+#
+# Machine learning models are compute intensive, and typically run on specialized
+# hardware called Graphical Processing Units (GPUs) instead of ordinary CPUs. Depending
+# on your input data format (images, tables, audio, etc), and the machine learning
+# library/framework you'll use (e.g. Pytorch, Tensorflow, RAPIDS AI CuML, etc), there
+# will be different ways to transfer data from disk storage -> CPU -> GPU.
+#
+# For this exercise, we'll be using [PyTorch](https://pytorch.org), and do the following
+# data conversions:
+#
+# [`geopandas.GeoDataFrame`](https://geopandas.org/en/v1.0.0/docs/reference/api/geopandas.GeoDataFrame.html) ->
+# [`pandas.DataFrame`](https://pandas.pydata.org/pandas-docs/version/2.2/reference/api/pandas.DataFrame.html) ->
+# [`torch.Tensor`](https://pytorch.org/docs/2.4/tensors.html#torch.Tensor) ->
+# [torch `Dataset`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.Dataset) ->
+# [torch `DataLoader`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.DataLoader)
+
+# %%
+# Select data variables from DataFrame that will be used for training
+df = gdf[
+    [
+        "photon_rate",
+        "hist_w",
+        "background_r_norm",
+        "height_segment_height",
+        "height_segment_n_pulse_seg",
+        "hist_mean_h",
+        "hist_median_h",
+    ]
+]
+tensor = torch.tensor(data=df.values)  # convert pandas.DataFrame to torch.Tensor
+assert tensor.shape == torch.Size([54053, 7])  # (rows, columns)
+dataset = torch.utils.data.TensorDataset(tensor)  # turn torch.Tensor into torch Dataset
+dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
+    dataset=dataset,
+    batch_size=128,  # mini-batch size
+    shuffle=True,
+)
+
+# %% [markdown]
+# PyTorch's [`DataLoader`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.DataLoader)
+# is a convenient container to hold tensor data, and makes it easy for us to iterate
+# over mini-batches using a for-loop.)
+
+# %%
+for batch in dataloader:
+    minibatch: torch.Tensor = batch[0]
+    assert minibatch.shape == (128, 7)
+    assert minibatch.device == torch.device("cpu")  # Data is on CPU
+
+    minibatch = minibatch.to(device="cuda")  # Move data to GPU
+    assert minibatch.device == torch.device("cuda:0")  # Data is on GPU now!
+
+    break
 
 # %%
 
