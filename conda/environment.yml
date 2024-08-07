@@ -15,14 +15,14 @@ channels:
 dependencies:
   - python~=3.11.0
   # Required until https://github.com/jupyterhub/repo2docker/pull/1196 is merged
-  - jupyterhub-singleuser~=4.0.1
+  # - jupyterhub-singleuser~=4.0.1
   # nbgitpuller is very helpful when distributing user content
-  - nbgitpuller~=1.2.0
+  # - nbgitpuller~=1.2.0
   # Specify major version of jupyterlab to use. Manually bump it when you want to upgrade
   # jupyterlab version
   - jupyterlab>=4.0,<4.1
   # This provides memory usage stats on JupyterLab and classic notebook
-  - jupyter-resource-usage~=1.0.1
+  # - jupyter-resource-usage~=1.0.1
   # https://syncthing.net/ provides a dropbox-like interface for syncing directories across users,
   # hubs and machines. Used along with `jupyter-syncthing-proxy`.
   # - jupyter-syncthing-proxy==1.0.3
@@ -45,13 +45,13 @@ dependencies:
   - jupyter-book~=1.0.0
 #  - jupyter-offlinenotebook~=0.2.2 # Outdated according to jupyterlab
 #  - jupyter-collaboration~=2.0.1
-  - jupyterlab-favorites~=3.2.1
-  - jupyterlab-geojson~=3.4.0
-  - jupyterlab-git~=0.50.0
-  - jupyterlab-h5web~=11.1.0
+  # - jupyterlab-favorites~=3.2.1
+  # - jupyterlab-geojson~=3.4.0
+  # - jupyterlab-git~=0.50.0
+  # - jupyterlab-h5web~=11.1.0
   - jupyterlab-myst~=2.4.2
 #  - jupyterlab-plotly~=5.18.0 # Outdated accoring to jupyterlab
-  - jupyterlab_pygments~=0.3.0 # To bring extension uptodate
+  # - jupyterlab_pygments~=0.3.0 # To bring extension uptodate
   - jupytext~=1.16.1
   - nbdime~=4.0.1
   # JupyterBook Addons
