@@ -141,10 +141,37 @@ gdf = gpd.GeoDataFrame(
         x=atl_file[f"{beam}/sea_ice_segments/longitude"][:],
         y=atl_file[f"{beam}/sea_ice_segments/latitude"][:],
     ),
+    crs="OGC:CRS84",
 )
+print(f"Total number of rows: {len(gdf)}")
 
 # %%
 gdf
+
+# %% [markdown]
+# ### Save to GeoParquet
+
+# %% [markdown]
+# Let's save the ATL07 photon data to a GeoParquet file so we don't have to run all the
+# download and filtering code above again.
+
+# %%
+gdf.to_parquet(
+    path="ATL07_photons.gpq", compression="zstd", schema_version="1.0.0-beta.1"
+)
+
+# %% [markdown]
+# ```{note} To compress or not?
+# When storing your data, note that there is a tradeoff in terms of compression and read
+# speeds. Uncompressed data would typically be fastest to read (assuming no network
+# transfer) but result in large file sizes. We'll choose Zstandard (zstd) as the
+# compression method here as it is typically faster to read (compared to the default
+# 'snappy' compression codec), and still compresses well into a small file size.
+# ```
+
+# %%
+# Load GeoParquet file back into geopandas.GeoDataFrame
+gdf = gpd.read_parquet(path="ATL07_photons.gpq")
 
 # %%
 
