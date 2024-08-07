@@ -31,7 +31,7 @@ jobs:
       uses: codespell-project/actions-codespell@master
       with:
         check_filenames: true
-        skip: '*.js,*.css,qaqc.yml,*.geojson'
+        skip: '*.js,*.css,qaqc.yml,*.geojson,conda/*'
         ignore_words_file: .codespellignore
         only_warn: 1
 
