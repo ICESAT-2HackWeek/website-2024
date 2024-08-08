@@ -1,6 +1,6 @@
 # Packaging notebook introduction and demo
 
-This notebook demonstrates how powerful packaging your Python code
+This tutorial demonstrates how powerful packaging your Python code
 can be ... even for yourself.
 
 Before we get ahead of ourselves. Let's think about the **WHY**.
@@ -146,6 +146,127 @@ we can install it, then, from a command line,
 we can run the code with a command `eggsample` and it will output on the terminal console, the same output as running the code in the notebook.
 Simple enough? Well, let's get started!
 
-## Demo
+## Simple Demo Exercise
 
-TODO: Add demo here
+1. First of all, let's think about the steps we need to take to package our code.
+
+    How would we break up this notebook to simple module(s)?
+
+    ```{admonition} Answer
+    :class: tip dropdown
+    1. Extract `condiments_tray` variable and `EggsellentCook` class to a `eggsellent_cook.py` module.
+    2. Put the `eggsellent_cook.py` modules in a directory called `eggsample`.
+    ```
+
+2. Now that we have a directory called `eggsample`, how could I use
+the code in the a new notebook?
+
+    ```{admonition} Answer
+    :class: tip dropdown
+
+    1. Create a new notebook in the same directory as the `eggsample` directory.
+
+    2. Import the `EggsellentCook` class from the `eggsample` directory.
+
+    3. Then we can instantiate and run the command in the last cell of the sample notebook.
+
+        ```python
+        from eggsample.eggsellent_cook import EggsellentCook
+
+        cook = EggsellentCook()
+        cook.add_ingredients()
+        cook.prepare_the_food()
+        cook.serve_the_food()
+        ```
+    ```
+
+    At this point, this is probably very familiar with most, if not, all of you.
+    However, this is not a "distribution package" yet. See note below.
+
+    ````{note}
+    What you have imported is a ["namespace package"](https://docs.python.org/3/glossary.html#term-namespace-package), which is a relatively advanced feature that we will not be covering in this tutorial.
+
+    You can see this in action by simply importing `eggsample` and then putting a `?` on the imported module using `ipython`.
+    You'll see a `(namespace)` in the `String form` section of the output.
+
+    ```python
+    import eggsample
+    eggsample?
+
+    # Output
+    # ...
+    # String form: <module 'eggsample' (namespace)...>
+    # ...
+    ```
+    ````
+
+3. How do we make this a "distribution package"?
+
+    ````{admonition} Answer
+    :class: tip dropdown
+    
+    Simply add `__init__.py` file in the `eggsample` directory.
+
+    When importing the `eggsample` package this time, you'll see the `(namespace)` is gone.
+
+    ```python
+    import eggsample
+    eggsample?
+
+    # Output
+    # ...
+    # String form: <module 'eggsample' ...>
+    # ...
+    ```
+    ````
+
+    Congratulations! You've just created a package! But we're not done yet.
+
+4. Typically we probably have this structure where the notebook is in the same level as the package directory.
+This is a common structure for a scientific project,
+and totally works when you're developing a package on your local machine.
+
+    ```console
+    mynotebook.ipynb
+    eggsample/
+        __init__.py
+        eggsellent_cook.py
+    ```
+
+    However, how can we share this package with others?
+
+    ````{admonition} Answer
+    :class: tip dropdown
+
+    1. You might zip the `eggsample` directory and share it with others.
+    2. Then they can unzip it in either:
+
+        a. The same directory as their notebook like the structure above.
+
+        b. A directory of their choices, say their home directory,
+        then they can add the `eggsample` directory to the system path in the notebook.
+
+        ```python
+        import sys
+
+        sys.path.insert(0, "/home/user")
+        ```
+    
+    ````
+
+5. At this point, you might be thinking, "This is a lot of work to share a package!"
+    And you're right! Woudn't it be nice if we could just install the package from PyPI
+    or even directly from github? Well, that's what we'll do in the next section.
+
+## Summary
+
+In this section, we've learned about the importance of packaging your code,
+Python packaging terms and their hierarchy from smallest to largest,
+and the workflow to package your code.
+
+We've also gone through a simple demo exercise to package a sample python code that we have in the [`sample.ipynb`](./sample.ipynb) notebook into a simple package called `eggsample`. We even learned about "namespace packages", but that's a bit advanced for this tutorial.
+
+This is a good start, but we've only covered the first 3 steps of the packaging workflow.
+There's one more step left to make it a "distribution package" that can be installed and used by others.
+This step is the "Add Python package metadata" step in the workflow.
+Go to the next section to learn more about this step.
