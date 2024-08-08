@@ -189,7 +189,7 @@ the code in the a new notebook?
     You can see this in action by simply importing `eggsample` and then putting a `?` on the imported module using `ipython`.
     You'll see a `(namespace)` in the `String form` section of the output.
 
-    ```python
+    ```ipython
     import eggsample
     eggsample?
 
@@ -209,7 +209,7 @@ the code in the a new notebook?
 
     When importing the `eggsample` package this time, you'll see the `(namespace)` is gone.
 
-    ```python
+    ```ipython
     import eggsample
     eggsample?
 
