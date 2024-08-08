@@ -34,62 +34,44 @@
 # ## Part 0: Setup
 
 # %%
+import earthaccess
 import geopandas as gpd
 import h5py
-import icepyx as ipx
-import s3fs
 import torch
 
 # %% [markdown]
 # ## Part 1: Convert ICESat-2 data into ML-ready format
 #
 # Steps:
-# - Access using icepyx
+# - Get ATL07 data using [earthaccess](https://earthaccess.readthedocs.io)
 # - Filter to only strong beams
 # - Subset to 6 data variables only
 #
 # TODO: copy Table 1 from Koo et al., 2023 paper
 
 # %%
+# Authenticate using NASA EarthData login
+auth = earthaccess.login()
+s3 = earthaccess.get_s3fs_session(daac="NSIDC")  # Start an AWS S3 session
+
+# %%
 # Set up spatiotemporal query for ATL07 sea ice product
-region_ross = ipx.Query(
-    product="ATL07",
-    spatial_extent=[-180, -78, -140, -70],
-    date_range=["2018-09-15", "2019-03-31"],
+granules = earthaccess.search_data(
+    short_name="ATL07",
+    cloud_hosted=True,
+    bounding_box=(-180, -78, -140, -70),
+    temporal=("2018-09-15", "2019-03-31"),
     version="006",
 )
+granules[0]  # visualize first data granule
 
 # %%
-region_ross.visualize_spatial_extent()
-
-# %%
-s3links = region_ross.avail_granules(cloud=True)
-# s3links
-
-# %%
-# Authenticate using NASA EarthData login; enter your user id and password when prompted
-credentials = region_ross.s3login_credentials
-credentials
-
-# %%
-s3 = s3fs.S3FileSystem(
-    key=credentials["accessKeyId"],
-    secret=credentials["secretAccessKey"],
-    token=credentials["sessionToken"],
-)
-
-# %%
-# the first index, [0], gets us into the list of s3 urls
-# the second index, [1], gets us the second entry in that list.
-s3url = s3links[0][1]
-s3url
-
-# %%
-s3file = s3.open(s3url, mode="rb")
+granule0 = granules[0:1]  # get just 1 granule for now
+file_obj = earthaccess.open(granules=granule0)[0]
 
 # %%
 # %%time
-atl_file = h5py.File(name=s3file, mode="r")
+atl_file = h5py.File(name=file_obj, mode="r")
 atl_file.keys()
 
 # %% [markdown]
@@ -211,7 +193,7 @@ df = gdf[
     ]
 ]
 tensor = torch.tensor(data=df.values)  # convert pandas.DataFrame to torch.Tensor
-assert tensor.shape == torch.Size([54053, 7])  # (rows, columns)
+assert tensor.shape == torch.Size([221346, 7])  # (rows, columns)
 dataset = torch.utils.data.TensorDataset(tensor)  # turn torch.Tensor into torch Dataset
 dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
     dataset=dataset,
