@@ -266,7 +266,8 @@ and the workflow to package your code.
 
 We've also gone through a simple demo exercise to package a sample python code that we have in the [`sample.ipynb`](./sample.ipynb) notebook into a simple package called `eggsample`. We even learned about "namespace packages", but that's a bit advanced for this tutorial.
 
-This is a good start, but we've only covered the first 3 steps of the packaging workflow.
-There's one more step left to make it a "distribution package" that can be installed and used by others.
+This is a good start, but we've only covered the first 3 steps of the packaging workflow,
+and even then, we've simplified it a bit.
+There is one more step left to make it a "distribution package" that can be installed and used by others.
 This step is the "Add Python package metadata" step in the workflow.
-Go to the next section to learn more about this step.
+Go to the next lesson to learn more about this step and a more extensive lesson in packaging.
