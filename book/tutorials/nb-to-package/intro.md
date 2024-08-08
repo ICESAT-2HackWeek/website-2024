@@ -141,9 +141,6 @@ Here's an overview of what a full workflow from notebooks to a package looks lik
 
 With this workflow, let's package a sample python code that we have in the [`sample.ipynb`](./sample.ipynb) notebook into a package called `eggsample`.
 
-The goal is that once this code is packaged,
-we can install it, then, from a command line,
-we can run the code with a command `eggsample` and it will output on the terminal console, the same output as running the code in the notebook.
 Simple enough? Well, let's get started!
 
 ## Simple Demo Exercise
