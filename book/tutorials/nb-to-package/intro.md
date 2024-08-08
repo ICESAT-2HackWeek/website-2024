@@ -255,7 +255,7 @@ and totally works when you're developing a package on your local machine.
     ````
 
 5. At this point, you might be thinking, "This is a lot of work to share a package!"
-    And you're right! Woudn't it be nice if we could just install the package from PyPI
+    And you're right! Wouldn't it be nice if we could just install the package from PyPI
     or even directly from github? Well, that's what we'll do in the next section.
 
 ## Summary
