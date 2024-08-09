@@ -362,7 +362,7 @@ Now this is what I call a condiments tray!
 ## Step 7: Share your package
 
 Congratulations! You've successfully created a Python package that can be shared with others easily and installed using `pip`.
-To share your package with others at this stage, you can push your repository to GitHub (see optional instruction below called `Creating and Pushing to GitHub`),
+To share your package with others at this stage, you can push your repository to GitHub (*see optional instruction below called `Creating and Pushing to GitHub`*),
 and then others can install your package using the following command:
 
 ```bash
