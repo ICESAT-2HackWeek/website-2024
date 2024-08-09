@@ -21,6 +21,7 @@ parts:
       sections:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
+        - file: tutorials/open-science/open-science-intro.md
 - caption: Projects
   chapters:
     - file: projects/index
