@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.16.2
+#       jupytext_version: 1.16.4
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -37,17 +37,26 @@
 import earthaccess
 import geopandas as gpd
 import h5py
+import pystac_client
 import torch
+import tqdm
 
 # %% [markdown]
 # ## Part 1: Convert ICESat-2 data into ML-ready format
 #
 # Steps:
 # - Get ATL07 data using [earthaccess](https://earthaccess.readthedocs.io)
-# - Filter to only strong beams
-# - Subset to 6 data variables only
+# - Find coincident Sentinel-2 imagery by searching over a
+#   [STAC API](https://pystac-client.readthedocs.io/en/v0.8.3/usage.html#itemsearch)
+# - Filter to only strong beams, and 6 data variables
 #
 # TODO: copy Table 1 from Koo et al., 2023 paper
+
+# %% [markdown]
+# ### Search for ATL07 data over study area
+#
+# In this sub-section, we'll set up a spatiotemporal query to look for ICESat-2 ATL07
+# sea ice data over the Ross Sea region around late February 2019.
 
 # %%
 # Authenticate using NASA EarthData login
@@ -59,23 +68,55 @@ s3 = earthaccess.get_s3fs_session(daac="NSIDC")  # Start an AWS S3 session
 granules = earthaccess.search_data(
     short_name="ATL07",
     cloud_hosted=True,
-    bounding_box=(-180, -78, -140, -70),
-    temporal=("2018-09-15", "2019-03-31"),
+    bounding_box=(-180, -78, -140, -70),  # xmin, ymin, xmax, ymax
+    temporal=("2019-02-24", "2019-02-28"),
     version="006",
 )
 granules[0]  # visualize first data granule
 
+# %% [markdown]
+# #### Find coincident Sentinel-2 imagery
+#
+# Let's also find some optical satellite images that were captured at around the same
+# time as the ICESat-2 ATL07 tracks.
+
 # %%
-granule0 = granules[0:1]  # get just 1 granule for now
-file_obj = earthaccess.open(granules=granule0)[0]
+# Connect to STAC API that hosts Sentinel-2 imagery on AWS us-west-2
+catalog = pystac_client.Client.open(url="https://earth-search.aws.element84.com/v1")
+
+# %%
+# Loop over each ATL07 data granule, and find Sentinel-2 images from same time range
+for granule in tqdm.tqdm(iterable=granules):
+    # Get ATL07 time range from Unified Metadata Model (UMM)
+    date_range = granule["umm"]["TemporalExtent"]["RangeDateTime"]
+    start_time = date_range["BeginningDateTime"]  # e.g. '2019-02-24T19:51:47.580Z'
+    end_time = date_range["EndingDateTime"]  # e.g. '2019-02-24T19:52:08.298Z'
+
+    search = catalog.search(
+        collections="sentinel-2-l1c",
+        bbox=[-180, -78, -140, -70],  # xmin, ymin, xmax, ymax
+        datetime=f"{start_time}/{end_time}",
+        query={"eo:cloud_cover": {"lt": 100}},  # max cloud cover
+        max_items=10,
+    )
+    item_collection = search.item_collection()
+    if item_len := len(item_collection) >= 1:
+        print(f"Found: {item_len} Sentinel-2 items coincident with granule: {granule}")
+        break  # uncomment this line if you want to find more matches
+
+# %% [markdown]
+# ### Filter to strong beams and required data variables
+#
+# Here, we'll open one ATL07 sea ice data file, and do some pre-processing.
 
 # %%
 # %%time
+file_obj = earthaccess.open(granules=[granule])[0]
 atl_file = h5py.File(name=file_obj, mode="r")
 atl_file.keys()
 
 # %% [markdown]
-# ### Get strong beams only
+# Strong beams can be chosen based on the `sc_orient` variable.
 #
 # Ref: https://github.com/ICESAT-2HackWeek/strong-beams
 
@@ -193,7 +234,7 @@ df = gdf[
     ]
 ]
 tensor = torch.tensor(data=df.values)  # convert pandas.DataFrame to torch.Tensor
-assert tensor.shape == torch.Size([221346, 7])  # (rows, columns)
+assert tensor.shape == torch.Size([3356, 7])  # (rows, columns)
 dataset = torch.utils.data.TensorDataset(tensor)  # turn torch.Tensor into torch Dataset
 dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
     dataset=dataset,
