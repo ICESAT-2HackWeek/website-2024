@@ -23,6 +23,7 @@ parts:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
         - file: tutorials/cloud-computing/00-goals-and-outline
+          sections:
             - file: tutorials/cloud-computing/01-cloud-computing
             - file: tutorials/cloud-computing/02-cloud-data-access
             - file: tutorials/cloud-computing/03-cloud-optimized-data-access
