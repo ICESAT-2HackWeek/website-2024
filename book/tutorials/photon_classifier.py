@@ -38,6 +38,7 @@ import earthaccess
 import geopandas as gpd
 import h5py
 import numpy as np
+import pandas as pd
 import pygmt
 import pystac_client
 import rioxarray  # noqa: F401
@@ -223,7 +224,7 @@ gdf = gpd.GeoDataFrame(
 )
 
 # %%
-gdf = gdf[gdf.layer_flag == 0].reset_index()  # keep points which are not cloudy
+gdf = gdf[gdf.layer_flag == 0].reset_index(drop=True)  # keep non-cloudy points only
 print(f"Total number of rows: {len(gdf)}")
 
 # %%
@@ -302,14 +303,75 @@ fig.show()
 
 
 # %% [markdown]
-# Looking good! Notice how the orange (sea surface) coincide with the cracks in the sea ice.
+# Looking good! Notice how the orange (sea surface) coincide with the cracks in the sea
+# ice.
+
+
+# %% [markdown]
+# Next, we'll want to do better than a binary 0/1 or ice/water classification, and pick
+# up different shades of gray (white thick ice, gray thin ice, black water). Let's
+# use the X and Y coordinates from the point cloud to pick up surface reflectance values
+# from the Sentinel-2 image.
+#
+# PyGMT's [`grdtrack`](https://www.pygmt.org/v0.12.0/api/generated/pygmt.grdtrack.html)
+# function can be used to do this X/Y sampling from a 1-band grid.
+
+# %%
+df_red = pygmt.grdtrack(
+    grid=da_image.sel(band="red").compute(),  # Choose only the Red band
+    points=gdf.get_coordinates(),  # x/y coordinates from ATL07
+    newcolname="red_band_value",
+    interpolation="n",  # nearest neighbour
+)
+
+# %%
+# Plot cross-section
+df_red.plot.scatter(x="y", y="red_band_value", title="Red band values in y-direction")
+
+# %% [markdown]
+# The cross-section view shows most points having a Red band reflectance value of 10000,
+# that should correspond to white sea ice. Darker values near 0 would be water, and
+# intermediate values around 6000 would be thin ice.
+#
+# (Click 'Show code cell content' below if you'd like to see the histogram plot)
+
+# %% editable=true slideshow={"slide_type": ""} tags=["hide-cell"]
+df_red.hist(column="red_band_value", bins=30)
+
+# %% [markdown]
+# To keep things simple, we'll label the `surface_type` of each ATL07 point
+# using a simple threshold:
+#
+# | Int label |      Surface Type     |      Bin values     |
+# |-----------|:---------------------:|:-------------------:|
+# |     0     | Water (dark)          | `0 <= x <= 4000`    |
+# |     1     | Thin sea ice (gray)   | `4000 < x <= 8000`  |
+# |     2     | Thick sea ice (white) | `8000 < x <= 14000` |
+
+
+# %%
+gdf["surface_type"] = pd.cut(
+    x=df_red["red_band_value"],
+    bins=[0, 4000, 8000, 14000],
+    labels=[0, 1, 2],  # "water", "thin_ice", "thick_ice"
+)
+
+# %% [markdown]
+# There are some NaN values in some rows of our geodataframe (which had no matching
+# Sentinel-2 pixel value) that should be dropped here.
+
+# %%
+gdf = gdf.dropna().reset_index(drop=True)
+
+# %%
+gdf
 
 # %% [markdown]
 # ### Save to GeoParquet
 
 # %% [markdown]
 # Let's save the ATL07 photon data to a GeoParquet file so we don't have to run all the
-# download and filtering code above again.
+# pre-processing code above again.
 
 # %%
 gdf.to_parquet(
