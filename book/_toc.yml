@@ -22,11 +22,11 @@ parts:
       sections:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
-        - section: tutorials/cloud-computing/00-goals-and-outline
-          - file: tutorials/cloud-computing/01-cloud-computing
-          - file: tutorials/cloud-computing/02-cloud-data-access
-          - file: tutorials/cloud-computing/03-cloud-optimized-data-access
-          - file: tutorials/cloud-computing/04-cloud-optimized-icesat2
+        - file: tutorials/cloud-computing/00-goals-and-outline
+            - file: tutorials/cloud-computing/01-cloud-computing
+            - file: tutorials/cloud-computing/02-cloud-data-access
+            - file: tutorials/cloud-computing/03-cloud-optimized-data-access
+            - file: tutorials/cloud-computing/04-cloud-optimized-icesat2
 - caption: Projects
   chapters:
     - file: projects/index
