@@ -7,4 +7,4 @@ Below you'll find a table keeping track of all tutorials presented at this event
 | Tutorial | Topics | Datasets |  Recording Link |
 | -  | - | - |  - |
 | [Example Notebook](./example/tutorial-notebook.ipynb) | Jupyter Book formatting, ipyleaflet | n/a |  Not recorded |
-| [ICESat-2 Mission](./mission-overview/index.md) | ICESat-2 Mission and Products | n/a |  Not recorded |
+| [ICESat-2 Mission](./mission-overview/icesat-2-mission-overview.ipynb) | ICESat-2 Mission and Products | n/a |  Not recorded |
