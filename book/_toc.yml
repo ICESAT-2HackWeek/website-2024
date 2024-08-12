@@ -2,7 +2,6 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 root: intro
 format: jb-book
-maxdepth: 2
 parts:
 - caption: Details
   chapters:
@@ -17,6 +16,7 @@ parts:
     - file: preliminary/checklist
     - file: preliminary/git
 - caption: Tutorials
+  maxdepth: 1
   chapters:
     - file: tutorials/index
       sections:
