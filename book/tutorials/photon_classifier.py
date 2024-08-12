@@ -37,7 +37,10 @@
 import earthaccess
 import geopandas as gpd
 import h5py
+import numpy as np
 import pystac_client
+import shapely.geometry
+import stackstac
 import torch
 import tqdm
 
@@ -56,7 +59,7 @@ import tqdm
 # ### Search for ATL07 data over study area
 #
 # In this sub-section, we'll set up a spatiotemporal query to look for ICESat-2 ATL07
-# sea ice data over the Ross Sea region around late February 2019.
+# sea ice data over the Ross Sea region around late October 2019.
 
 # %%
 # Authenticate using NASA EarthData login
@@ -69,16 +72,22 @@ granules = earthaccess.search_data(
     short_name="ATL07",
     cloud_hosted=True,
     bounding_box=(-180, -78, -140, -70),  # xmin, ymin, xmax, ymax
-    temporal=("2019-02-24", "2019-02-28"),
+    temporal=("2019-10-31", "2019-11-01"),
     version="006",
 )
-granules[0]  # visualize first data granule
+granules[-1]  # visualize last data granule
 
 # %% [markdown]
 # #### Find coincident Sentinel-2 imagery
 #
 # Let's also find some optical satellite images that were captured at around the same
-# time as the ICESat-2 ATL07 tracks.
+# time and location as the ICESat-2 ATL07 tracks. We will be using
+# [`pystac_client.Client.search`](https://pystac-client.readthedocs.io/en/v0.8.3/api.html#pystac_client.Client.search)
+# and doing the search with two steps:
+#
+# 1. (Fast) search using date to find potential Sentinel-2/ICESat-2 pairs
+# 2. (Slow) search using spatial intersection to ensure Sentinel-2 image overlaps with
+#    ICESat-2 track.
 
 # %%
 # Connect to STAC API that hosts Sentinel-2 imagery on AWS us-west-2
@@ -92,17 +101,47 @@ for granule in tqdm.tqdm(iterable=granules):
     start_time = date_range["BeginningDateTime"]  # e.g. '2019-02-24T19:51:47.580Z'
     end_time = date_range["EndingDateTime"]  # e.g. '2019-02-24T19:52:08.298Z'
 
-    search = catalog.search(
-        collections="sentinel-2-l1c",
+    # 1st check (temporal match)
+    search1 = catalog.search(
+        collections="sentinel-2-l2a",  # Bottom-of-Atmosphere product
         bbox=[-180, -78, -140, -70],  # xmin, ymin, xmax, ymax
         datetime=f"{start_time}/{end_time}",
-        query={"eo:cloud_cover": {"lt": 100}},  # max cloud cover
+        query={"eo:cloud_cover": {"lt": 30}},  # max cloud cover
         max_items=10,
     )
-    item_collection = search.item_collection()
-    if item_len := len(item_collection) >= 1:
-        print(f"Found: {item_len} Sentinel-2 items coincident with granule: {granule}")
-        break  # uncomment this line if you want to find more matches
+    _item_collection = search1.item_collection()
+    if (_item_len := len(_item_collection)) >= 1:
+        # print(f"Potential: {_item_len} Sentinel-2 x ATL07 matches!")
+
+        # 2nd check (spatial match) using centre-line track intersection
+        file_obj = earthaccess.open(granules=[granule])[0]
+        atl_file = h5py.File(name=file_obj, mode="r")
+        linetrack = shapely.geometry.LineString(
+            coordinates=zip(
+                atl_file["gt2r/sea_ice_segments/longitude"][:10000],
+                atl_file["gt2r/sea_ice_segments/latitude"][:10000],
+            )
+        ).simplify(tolerance=10)
+        search2 = catalog.search(
+            collections="sentinel-2-l2a",
+            intersects=linetrack,
+            datetime=f"{start_time}/{end_time}",
+            max_items=10,
+        )
+        item_collection = search2.item_collection()
+        if (item_len := len(item_collection)) >= 1:
+            print(
+                f"Found: {item_len} Sentinel-2 items coincident with granule:\n{granule}"
+            )
+            break  # uncomment this line if you want to find more matches
+
+# %% [markdown]
+# We should have found a match! In case you missed it, these are the two variables pointing to the data we'll use later:
+#
+# - `granule` - ICESat-2 ATL07 sea ice point cloud data
+# - `item_collection` - Sentinel-2 optical satellite images
+
+# %%
 
 # %% [markdown]
 # ### Filter to strong beams and required data variables
@@ -234,7 +273,7 @@ df = gdf[
     ]
 ]
 tensor = torch.tensor(data=df.values)  # convert pandas.DataFrame to torch.Tensor
-assert tensor.shape == torch.Size([3356, 7])  # (rows, columns)
+assert tensor.shape == torch.Size([38246, 7])  # (rows, columns)
 dataset = torch.utils.data.TensorDataset(tensor)  # turn torch.Tensor into torch Dataset
 dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
     dataset=dataset,
