@@ -21,6 +21,7 @@ parts:
       sections:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
+        - file: tutorials/cloud-computing/00-goals-and-outline.ipynb
 - caption: Projects
   chapters:
     - file: projects/index
