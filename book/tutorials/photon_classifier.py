@@ -173,7 +173,7 @@ for beam in strong_beams:
     print(beam)
 
 # %% [markdown]
-# Data variables to use:
+# Key data variables to use (for model training):
 #   1. `photon_rate`: photon rate
 #   2. `hist_w`: width of the photon height distribution
 #   3. `background_r_norm`: background photon rate
@@ -181,11 +181,18 @@ for beam in strong_beams:
 #   5. `height_segment_n_pulse_seg`: number of laser pulses
 #   6. `hist_mean_h` - `hist_median_h`: difference between mean and median height
 #
-# TODO link to data dictionary
+# Other data variables:
+# - `x_atc` - Along track distance from the equator
+# - `layer_flag` - Consolidated cloud flag { 0: 'likely_clear', 1: 'likely_cloudy' }
+# - `height_segment_ssh_flag` - Sea surface flag { 0: 'sea ice', 1: 'sea surface' }
+#
+# Data dictionary at:
+# https://nsidc.org/sites/default/files/documents/technical-reference/icesat2_atl07_data_dict_v006.pdf
 
 # %%
 gdf = gpd.GeoDataFrame(
     data={
+        # Key data variables
         "photon_rate": atl_file[f"{beam}/sea_ice_segments/stats/photon_rate"][:],
         "hist_w": atl_file[f"{beam}/sea_ice_segments/stats/hist_w"][:],
         "background_r_norm": atl_file[
@@ -199,6 +206,12 @@ gdf = gpd.GeoDataFrame(
         ][:],
         "hist_mean_h": atl_file[f"{beam}/sea_ice_segments/stats/hist_mean_h"][:],
         "hist_median_h": atl_file[f"{beam}/sea_ice_segments/stats/hist_median_h"][:],
+        # Other data variables
+        "x_atc": atl_file[f"{beam}/sea_ice_segments/seg_dist_x"][:],
+        "layer_flag": atl_file[f"{beam}/sea_ice_segments/stats/layer_flag"][:],
+        "height_segment_ssh_flag": atl_file[
+            f"{beam}/sea_ice_segments/heights/height_segment_ssh_flag"
+        ][:],
     },
     geometry=gpd.points_from_xy(
         x=atl_file[f"{beam}/sea_ice_segments/longitude"][:],
@@ -206,6 +219,9 @@ gdf = gpd.GeoDataFrame(
     ),
     crs="OGC:CRS84",
 )
+
+# %%
+gdf = gdf[gdf.layer_flag == 0].reset_index()  # keep points which are not cloudy
 print(f"Total number of rows: {len(gdf)}")
 
 # %%
