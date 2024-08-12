@@ -38,7 +38,9 @@ import earthaccess
 import geopandas as gpd
 import h5py
 import numpy as np
+import pygmt
 import pystac_client
+import rioxarray  # noqa: F401
 import shapely.geometry
 import stackstac
 import torch
@@ -226,6 +228,81 @@ print(f"Total number of rows: {len(gdf)}")
 
 # %%
 gdf
+
+# %%
+
+# %% [markdown]
+# ### Optical imagery to label point clouds
+#
+# Let's use the Sentinel-2 satellite image we found to label each ATL07 photon. We'll
+# make a new column called `sea_ice_label` that can have either of these classifications:
+#
+# 0. thick/snow-covered sea ice
+# 1. thin/gray sea ice
+# 2. open water
+#
+# These labels will be empirically determined based on the brightness (or surface
+# reflectance) of the Sentinel-2 pixel.
+#
+# ```{note}
+# Sea ice can move very quickly in minutes, so while we've tried our best to find a
+# Sentinel-2 image that was captured at about the same time as the ICESat-2 track, it is
+# very likely that we will still be misclassifying some of the points below because the
+# image and point clouds are not perfectly aligned.
+# ```
+
+# %%
+# Get first STAC item from collection
+item = item_collection.items[0]
+item
+
+
+# %%
+# Get RGB bands from Sentinel-2 STAC item as an xarray.DataArray
+da_image = stackstac.stack(
+    items=item,
+    assets=["red", "green", "blue"],
+    resolution=60,
+    rescale=False,  # keep original 14-bit scale
+    dtype=np.float32,
+    fill_value=np.float32(np.nan),
+)
+da_image = da_image.squeeze(dim="time")  # drop time dimension so only (band, y, x) left
+da_image
+
+
+# %%
+# Get bounding box of Sentinel-2 image to spatially subset ATL07 geodataframe
+bbox = shapely.geometry.box(*da_image.rio.bounds())  # xmin, ymin, xmax, ymax
+gdf = gdf.to_crs(crs=da_image.crs)  # reproject point cloud to Sentinel-2 image's CRS
+gdf = gdf[gdf.within(other=bbox)].reset_index()  # subset point cloud to Sentinel-2 bbox
+
+# %% [markdown]
+# Let's plot the Sentinel-2 satellite image and ATL07 points! The ATL07 data has a
+# `height_segment_ssh_flag` variable with a binary sea ice (0) / sea surface (1)
+# classification, which we'll plot using two different colors to check that things
+# overlap more or less.
+
+# %%
+fig = pygmt.Figure()
+
+# Plot Sentinel-2 RGB image
+# Convert from 14-bit to 8-bit color scale for PyGMT
+fig.grdimage(grid=((da_image / 2**14) * 2**8).astype(np.uint8), frame=True)
+
+# Plot ATL07 points
+# Sea ice points in blue
+df_ice = gdf[gdf.height_segment_ssh_flag == 0].get_coordinates()
+fig.plot(x=df_ice.x, y=df_ice.y, style="c0.2c", fill="blue", label="Sea ice")
+# Sea surface points in orange
+df_water = gdf[gdf.height_segment_ssh_flag == 1].get_coordinates()
+fig.plot(x=df_water.x, y=df_water.y, style="c0.2c", fill="orange", label="Sea surface")
+fig.legend()
+fig.show()
+
+
+# %% [markdown]
+# Looking good! Notice how the orange (sea surface) coincide with the cracks in the sea ice.
 
 # %% [markdown]
 # ### Save to GeoParquet
