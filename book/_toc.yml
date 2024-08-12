@@ -21,7 +21,7 @@ parts:
       sections:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
-        - file: tutorials/open-science/open-science-intro.md
+        - file: tutorials/open-science/index.md
         - file: tutorials/open-science/data-formats-and-metadata.md
         - file: tutorials/open-science/licensing.md
         - file: tutorials/open-science/archiving.md

@@ -13,7 +13,9 @@ Focus on creating interpetable and reusable data
 
 ## Overview
 
-Hopefully, all of you at the hackweek agree that making science more open is worthwhile and important.  In this tutorial we hope to show how to make science more open.  By the end of the week all of us will have written some code, processed some data and maybe even have some results.  The next step is to make sure that this effort is not lost or forgotten by you, your project group, other hackweek particpants, and even the Earth science community.
+Hopefully, all of you at the hackweek agree that making science more open is worthwhile and important.  In this tutorial we will show some ways to make science more open.  This is not meant to be a complete guide to open science.  Instead we will focus on how to make notebooks, scripts, datsets open. 
+
+By the end of the week all of us will have written some code, processed some data and maybe even have some results.  The next step is to make sure that this effort is not lost or forgotten by you, your project group, other hackweek particpants, and even the Earth science community.
 
 Take a moment to consider if, in a week or more time, you will be able to open a data file or notebook and relatively quickly pick up where you left off?  Will you project team members be able to take your code or data and start working on it?
 
@@ -23,3 +25,11 @@ What, if anything, could you do to increase the chance of being able to get back
 
 [Use slido for feedback]
 
+## Outline
+
+1. [](./data-formats-and-metadata.md)
+    - Which file format?
+    - 
+2. [](./licensing.md)
+3. [](./archiving.md)
+3. [](./further-information.md)
