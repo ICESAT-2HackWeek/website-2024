@@ -182,7 +182,8 @@ for beam in strong_beams:
 #   3. `background_r_norm`: background photon rate
 #   4. `height_segment_height`: relative surface height
 #   5. `height_segment_n_pulse_seg`: number of laser pulses
-#   6. `hist_mean_h` - `hist_median_h`: difference between mean and median height
+#   6. `hist_mean_median_h_diff` = `hist_mean_h` - `hist_median_h`: difference between
+#       mean and median height
 #
 # Other data variables:
 # - `x_atc` - Along track distance from the equator
@@ -224,7 +225,9 @@ gdf = gpd.GeoDataFrame(
 )
 
 # %%
+# Pre-processing data
 gdf = gdf[gdf.layer_flag == 0].reset_index(drop=True)  # keep non-cloudy points only
+gdf["hist_mean_median_h_diff"] = gdf.hist_mean_h - gdf.hist_median_h
 print(f"Total number of rows: {len(gdf)}")
 
 # %%
@@ -394,10 +397,17 @@ gdf = gpd.read_parquet(path="ATL07_photons.gpq")
 # %%
 
 # %% [markdown]
-# ## Part 2: Choosing a Machine Learning algorithm
+# ## Part 2: DataLoader and Model architecture
+#
+# The following parts will bring us one step closer to having a full machine learning
+# pipeline. We will create:
+#
+# 1. A 'DataLoader', which is a fancy data container we can loop over; and
+# 2. A neural network 'model' that will take our input ATL07 data and output photon
+#    classifications.
 
 # %% [markdown]
-# ### Moving data from CPU to GPU
+# ### From dataframe tables to batched tensors
 #
 # Machine learning models are compute intensive, and typically run on specialized
 # hardware called Graphical Processing Units (GPUs) instead of ordinary CPUs. Depending
@@ -418,17 +428,19 @@ gdf = gpd.read_parquet(path="ATL07_photons.gpq")
 # Select data variables from DataFrame that will be used for training
 df = gdf[
     [
+        # Input variables
         "photon_rate",
         "hist_w",
         "background_r_norm",
         "height_segment_height",
         "height_segment_n_pulse_seg",
-        "hist_mean_h",
-        "hist_median_h",
+        "hist_mean_median_h_diff",
+        # Output label (groundtruth)
+        "surface_type",
     ]
 ]
 tensor = torch.tensor(data=df.values)  # convert pandas.DataFrame to torch.Tensor
-assert tensor.shape == torch.Size([38246, 7])  # (rows, columns)
+assert tensor.shape == torch.Size([9454, 7])  # (rows, columns)
 dataset = torch.utils.data.TensorDataset(tensor)  # turn torch.Tensor into torch Dataset
 dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
     dataset=dataset,
@@ -437,20 +449,14 @@ dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
 )
 
 # %% [markdown]
-# PyTorch's [`DataLoader`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.DataLoader)
-# is a convenient container to hold tensor data, and makes it easy for us to iterate
-# over mini-batches using a for-loop.)
+# This `DataLoader` can be used in a for-loop later to produce mini-batch tensors of
+# shape (128, 7) later below.
 
-# %%
-for batch in dataloader:
-    minibatch: torch.Tensor = batch[0]
-    assert minibatch.shape == (128, 7)
-    assert minibatch.device == torch.device("cpu")  # Data is on CPU
+# %% [markdown]
+# ### Choosing a Machine Learning algorithm
+#
+# Next, we'll pick a 'model' for our photon classification task.
 
-    minibatch = minibatch.to(device="cuda")  # Move data to GPU
-    assert minibatch.device == torch.device("cuda:0")  # Data is on GPU now!
-
-    break
 
 # %%
 
@@ -463,7 +469,23 @@ for batch in dataloader:
 # - final layer with 3 nodes, for 3 surface types (open water, thin ice, thick/snow-covered ice)
 # - Adam optimizer
 
+# %% [markdown]
+# PyTorch's [`DataLoader`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.DataLoader)
+# is a convenient container to hold tensor data, and makes it easy for us to iterate
+# over mini-batches using a for-loop.)
+
 # %%
+for batch in dataloader:
+    minibatch: torch.Tensor = batch[0]
+    assert minibatch.shape == (128, 7)
+    assert minibatch.device == torch.device("cpu")  # Data is on CPU
+
+    # Uncomment two lines below if GPU is available
+    # minibatch = minibatch.to(device="cuda")  # Move data to GPU
+    # assert minibatch.device == torch.device("cuda:0")  # Data is on GPU now!
+
+    break
+
 
 # %%
 
