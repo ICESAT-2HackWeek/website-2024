@@ -455,10 +455,61 @@ dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
 # %% [markdown]
 # ### Choosing a Machine Learning algorithm
 #
-# Next, we'll pick a 'model' for our photon classification task.
+# Next is to pick a supervised learning 'model' for our photon classification task.
+# There are a variety of machine learning methods to choose with different levels of
+# complexity:
+#
+# - Easy - Decision trees (e.g. XGBoost, Random Forest), K-Nearest Neighbors, etc
+# - Medium - Basic neural networks (e.g. Multi-layer Perceptron, Convolutional neural
+#   networks, etc).
+# - Hard - State-of-the-art models (e.g. Graph Neural Networks, Transformers, State
+#   Space Models)
+#
+# Let's take the middle ground and build a multi-layer perceptron, also known as an
+# artificial feedforward neural network.
+#
+# ```{seealso}
+# There are many frameworks catering to the different levels of Machine Learning models
+# mentioned above. Some notable ones are:
+#
+# - Easy: 'Classic' ML - [Scikit-learn](https://scikit-learn.org) (CPU-based) and
+#   [CuML](https://docs.rapids.ai/api/cuml) (GPU-based)
+# - Medium: DIY Neural networks - [Pytorch](https://pytorch.org) and
+#   [Tensorflow](https://www.tensorflow.org)
+# - Hard: High-level ML frameworks - [Lightning](https://lightning.ai/docs/pytorch),
+#   [HuggingFace](https://huggingface.co/docs), etc.
+#
+# While you might think that going from easy to hard is recommended, there are some
+# people who actually start with a (well-documented) framework and work their way down!
+# Do whatever works best for you on your machine learning journey.
+# ```
+#
+# A Pytorch model or
+# [`torch.nn.Module`](https://pytorch.org/docs/2.4/generated/torch.nn.Module.html) is
+# constructed as a Python class with an `__init__` method for the neural network layers,
+# and a `forward` method for the forward pass (how the data passes through the layers).
 
 
 # %%
+class PhotonClassificationModel(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.linear1 = torch.nn.Linear(in_features=6, out_features=50)
+        self.linear2 = torch.nn.Linear(in_features=50, out_features=50)
+        self.linear3 = torch.nn.Linear(in_features=50, out_features=3)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x1 = self.linear1(x)
+        x2 = self.linear2(x1)
+        x3 = self.linear3(x2)
+        return x3
+
+
+# %%
+model = PhotonClassificationModel()
+# model = model.to(device="cuda") # uncomment this line if running on GPU
+model
+
 
 # %% [markdown]
 # ## Part 3: Training the neural network
