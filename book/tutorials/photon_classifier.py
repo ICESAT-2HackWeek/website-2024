@@ -439,8 +439,10 @@ df = gdf[
         "surface_type",
     ]
 ]
-tensor = torch.tensor(data=df.values)  # convert pandas.DataFrame to torch.Tensor
-assert tensor.shape == torch.Size([9454, 7])  # (rows, columns)
+tensor = torch.from_numpy(  # convert pandas.DataFrame to torch.Tensor (via numpy)
+    df.to_numpy(dtype="float32")
+)
+# assert tensor.shape == torch.Size([9454, 7])  # (rows, columns)
 dataset = torch.utils.data.TensorDataset(tensor)  # turn torch.Tensor into torch Dataset
 dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
     dataset=dataset,
@@ -449,8 +451,9 @@ dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
 )
 
 # %% [markdown]
-# This `DataLoader` can be used in a for-loop later to produce mini-batch tensors of
-# shape (128, 7) later below.
+# This PyTorch
+# [`DataLoader`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.DataLoader)
+# can be used in a for-loop to produce mini-batch tensors of shape (128, 7) later below.
 
 # %% [markdown]
 # ### Choosing a Machine Learning algorithm
@@ -488,7 +491,12 @@ dataloader = torch.utils.data.DataLoader(  # put torch Dataset in a DataLoader
 # [`torch.nn.Module`](https://pytorch.org/docs/2.4/generated/torch.nn.Module.html) is
 # constructed as a Python class with an `__init__` method for the neural network layers,
 # and a `forward` method for the forward pass (how the data passes through the layers).
-
+#
+# This multi-layer perceptron below will have:
+# - An input layer with 6 nodes, corresponding to the 6 input data variables
+# - Two hidden layers, 50 nodes each
+# - Output layer with 3 nodes, for 3 surface types (open water, thin ice,
+#   thick/snow-covered ice)
 
 # %%
 class PhotonClassificationModel(torch.nn.Module):
@@ -514,31 +522,63 @@ model
 # %% [markdown]
 # ## Part 3: Training the neural network
 #
-# Use multi-layer perceptron with:
-# - 2 hidden layers, 50 nodes each
-# - tanh activation function
-# - final layer with 3 nodes, for 3 surface types (open water, thin ice, thick/snow-covered ice)
-# - Adam optimizer
+# Now is the time to train the ML model! We'll need to:
+# 1. Choose a [loss function](https://pytorch.org/docs/2.4/nn.html#loss-functions) and
+#    [optimizer](https://pytorch.org/docs/2.4/optim.html)
+# 2. Configure training hyperparameters such as the learning rate (`lr`) and number of
+#    epochs (`max_epochs`) or iterations over the entire training dataset.
+# 3. Construct the main training loop to:
+#    - get a mini-batch from the DataLoader
+#    - pass the mini-batch data into the model to get a prediction
+#    - minimize the error (or loss) between the prediction and groundtruth
+#
+# Let's see how this is done!
+
+# %%
+# Setup loss function and optimizer
+loss_bce = torch.nn.BCEWithLogitsLoss()  # binary cross entropy loss
+optimizer = torch.optim.Adam(params=model.parameters(), lr=0.001)
+
+# %%
+# Main training loop
+max_epochs: int = 3
+size = len(dataloader.dataset)
+for epoch in tqdm.tqdm(iterable=range(max_epochs)):
+    for i, batch in enumerate(dataloader):
+        minibatch: torch.Tensor = batch[0]
+        # assert minibatch.shape == (128, 7)
+        assert minibatch.device == torch.device("cpu")  # Data is on CPU
+
+        # Uncomment two lines below if GPU is available
+        # minibatch = minibatch.to(device="cuda")  # Move data to GPU
+        # assert minibatch.device == torch.device("cuda:0")  # Data is on GPU now!
+
+        # Split data into input (x) and target (y)
+        x = minibatch[:, :6]  # Input is in first 6 columns
+        y = minibatch[:, 6]  # Output (groundtruth) is in 7th column
+        y_target = torch.nn.functional.one_hot(y.to(dtype=torch.int64), 3)  # 3 classes
+
+        # Pass data into neural network model
+        prediction = model(x=x)
+
+        # Compute prediction error
+        loss = loss_bce(input=prediction, target=y_target.to(dtype=torch.float32))
+
+        # Backpropagation (to minimize loss)
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+
+        # Report metrics
+        current = (i + 1) * len(x)
+        print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+
 
 # %% [markdown]
-# PyTorch's [`DataLoader`](https://pytorch.org/docs/2.4/data.html#torch.utils.data.DataLoader)
-# is a convenient container to hold tensor data, and makes it easy for us to iterate
-# over mini-batches using a for-loop.)
+# Did the model learn something? A good sign to check is if the loss value is
+# decreasing, which means the error between the predicted and groundtruth value is
+# getting smaller.
 
-# %%
-for batch in dataloader:
-    minibatch: torch.Tensor = batch[0]
-    assert minibatch.shape == (128, 7)
-    assert minibatch.device == torch.device("cpu")  # Data is on CPU
-
-    # Uncomment two lines below if GPU is available
-    # minibatch = minibatch.to(device="cuda")  # Move data to GPU
-    # assert minibatch.device == torch.device("cuda:0")  # Data is on GPU now!
-
-    break
-
-
-# %%
 
 # %% [markdown]
 # ## References
