@@ -22,9 +22,10 @@ parts:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
         - file: tutorials/open-science/index.md
-        - file: tutorials/open-science/data-formats-and-metadata.md
-        - file: tutorials/open-science/licensing.md
-        - file: tutorials/open-science/archiving.md
+          sections:
+          - file: tutorials/open-science/data-formats-and-metadata.md
+          - file: tutorials/open-science/licensing.md
+          - file: tutorials/open-science/archiving.md
 - caption: Projects
   chapters:
     - file: projects/index
