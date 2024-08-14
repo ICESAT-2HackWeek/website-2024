@@ -37,6 +37,8 @@ execute:
   execute_notebooks: 'force'
   exclude_patterns:
     - "**/geospatial-advanced.ipynb"
+    - "cloud-computing/04-cloud-optimized-icesat2.ipynb"
+    - "cloud-computing/atl08_parquet_files/atl08_parquet.ipynb"
   allow_errors: false
   # Per-cell notebook execution limit (seconds)
   timeout: 300
