@@ -32,4 +32,6 @@ What, if anything, could you do to increase the chance of being able to get back
     - 
 2. [](./licensing.md)
 3. [](./archiving.md)
-3. [](./further-information.md)
+4. [](./resources.md)
+
+
