@@ -11,3 +11,4 @@ time you log in.
 | Tutorial | Topics | Datasets |  Recording Link |
 | -  | - | - |  - |
 | [Example Notebook](./example/tutorial-notebook.ipynb) | Jupyter Book formatting, ipyleaflet | n/a |  Not recorded |
+| [Notebook to Packages](./nb-to-package/index.md) | All about Python package | n/a |  Not recorded |
