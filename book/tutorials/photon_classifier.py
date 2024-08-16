@@ -384,17 +384,15 @@ gdf
 # pre-processing code above again.
 
 # %%
-gdf.to_parquet(
-    path="ATL07_photons.gpq", compression="zstd", schema_version="1.0.0-beta.1"
-)
+gdf.to_parquet(path="ATL07_photons.gpq", compression="zstd", schema_version="1.1.0")
 
 # %% [markdown]
 # ```{note} To compress or not?
 # When storing your data, note that there is a tradeoff in terms of compression and read
 # speeds. Uncompressed data would typically be fastest to read (assuming no network
 # transfer) but result in large file sizes. We'll choose Zstandard (zstd) as the
-# compression method here as it is typically faster to read (compared to the default
-# 'snappy' compression codec), and still compresses well into a small file size.
+# compression method here as it provides a balance between fast reads (quicker than the
+# default 'snappy' compression codec), and good compression into a small file size.
 # ```
 
 # %%
