@@ -22,6 +22,7 @@ parts:
       sections:
         - file: tutorials/example/tutorial-notebook
         - file: tutorials/nb-to-package/index.md
+        - file: tutorials/mission-overview/icesat-2-mission-overview
         - file: tutorials/cloud-computing/00-goals-and-outline
           sections:
             - file: tutorials/cloud-computing/01-cloud-computing
