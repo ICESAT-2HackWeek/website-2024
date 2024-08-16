@@ -13,12 +13,40 @@ You might ask yourself:
 
 ... well, maybe not the last one. But the others are valid questions.
 
-## What is a Python package?
+## The Python Terms Hierarchy
 
-A "package" or officially called a "distribution package" is simply
-a directory of Python modules and sub-packages with an `__init__.py` file
-that allows for the modular organization of code.
-It can be be installed and distributed for use by others.
+Here's a hierarchy of Python terms that we will cover,
+from smallest to largest, to help you understand the relationship between modules, packages, and libraries:
+
+<img src="../../img/code-to-package.png" alt="functions to libraries" width="200"/>
+
+A python package may look like the following:
+
+```console
+mypackage/
+    __init__.py
+    module1.py
+    module2.py
+    subpackage/
+        __init__.py
+        submodule1.py
+        submodule2.py
+
+```
+
+Within the `mypackage` package and its subpackages, you might import functions from a dependency like `numpy`
+within a module file. Once this set of packages is bundled together and distributed,
+you'll end up essentially with a library that can be installed and used by others.
+
+This action of bundling your code together into a package or library is called "packaging" your code.
+
+Phew! That was a lot of information. Let's break it down a bit, term by term.
+
+## What is a package?
+
+A "package" is simply an organized directory of Python files,
+**especially containing an `__init__.py` file**,
+that can be installed and distributed for use by others.
 
 ![Bedroom](https://images.unsplash.com/photo-1630699293259-0b6c08606c62?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
 
@@ -30,11 +58,10 @@ Inside the bedroom, you have a bed, a nightstand, and a closet.
 - The closet is like a *sub-package* in a package, since there might be other
 furniture pieces in a closet like a dresser; some closets can even be a whole room!
 
-### Module
+## What is a module?
 
 A module is a single file of Python code that can be imported into Python
-scripts or other modules,
-also known officially as an "import package".
+scripts or other modules.
 This is the smallest unit of code reuse in Python.
 You'll see these as `.py` files.
 
@@ -66,7 +93,7 @@ For example, a bed is a piece of furniture that we spend most of our life on,
 this "bed" might be made up of various parts like a headboard, frame, and mattress.
 Each of these parts can be thought of as a function or class in a module.
 
-### Library
+## What is a library?
 
 A library is a collection of modules and packages that provide specific functionality or a set of related functionalities.
 In the Python ecosystem, a library is often used interchangeably with the term "package", and this can be confusing.
@@ -74,38 +101,23 @@ For example, [Matplotlib](https://matplotlib.org/) is a plotting library that co
 or [Xarray](http://xarray.pydata.org/en/stable/) is a library that includes several modules and packages to help you work with labeled multi-dimensional arrays.
 You can "include" these libraries in your program to add features without reinventing the wheel.
 
+As a simple example, you can utilize xarray library's testing module to
+import an
+[`assert_equal`](https://docs.xarray.dev/en/stable/generated/xarray.testing.assert_equal.html)
+function to test if two xarray datasets are equal:
+
+```console
+from xarray.testing import assert_equal
+     ^      ^              ^
+   library  module         function
+```
+
 ![blueprint](https://images.pexels.com/photos/4792480/pexels-photo-4792480.jpeg)
 
 To make it clear, let's go back to the bedroom analogy.
 A library is like a collection of rooms in a house, it is beyond just a single room.
 It is the house itself, which contains many rooms.
 Different house or even a commercial space might have different purposes and functionalities.
-
-### The Python Terms Hierarchy
-
-Here's a hierarchy of Python terms from smallest to largest to help you understand the relationship between modules, packages, and libraries:
-
-<img src="../../img/code-to-package.png" alt="functions to libraries" width="200"/>
-
-A python package may look like the following:
-
-```console
-mypackage/
-    __init__.py
-    module1.py
-    module2.py
-    subpackage/
-        __init__.py
-        submodule1.py
-        submodule2.py
-
-```
-
-Within the `mypackage` package and its subpackages, you might import functions from a dependency like `numpy`
-within a module file. Once this set of packages is bundled together and distributed,
-you'll end up essentially with a library that can be installed and used by others.
-
-This action of bundling your code together into a package or library is called "packaging" your code.
 
 ```{note}
 For the rest of this tutorial, we'll use the term "package" to refer to a collection of code that can be installed and used by others,
