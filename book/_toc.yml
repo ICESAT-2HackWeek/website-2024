@@ -16,11 +16,28 @@ parts:
     - file: preliminary/checklist
     - file: preliminary/git
 - caption: Tutorials
+  maxdepth: 1
   chapters:
     - file: tutorials/index
       sections:
         - file: tutorials/example/tutorial-notebook
-        - file: tutorials/nb-to-package/index.md
+        - file: tutorials/nb-to-package/index
+          sections:
+            - file: tutorials/nb-to-package/intro
+              sections:
+              - file: tutorials/nb-to-package/sample.ipynb
+            - file: tutorials/nb-to-package/package
+            - file: tutorials/nb-to-package/community
+        - file: tutorials/mission-overview/icesat-2-mission-overview
+        - file: tutorials/cloud-computing/00-goals-and-outline
+          sections:
+            - file: tutorials/cloud-computing/01-cloud-computing
+            - file: tutorials/cloud-computing/02-cloud-data-access
+            - file: tutorials/cloud-computing/03-cloud-optimized-data-access
+            - file: tutorials/cloud-computing/04-cloud-optimized-icesat2
+            - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
+              options:
+                - titlesonly: true
         - file: tutorials/photon_classifier
 - caption: Projects
   chapters:

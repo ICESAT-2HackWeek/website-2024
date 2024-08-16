@@ -7,4 +7,7 @@ Below you'll find a table keeping track of all tutorials presented at this event
 | Tutorial | Topics | Datasets |  Recording Link |
 | -  | - | - |  - |
 | [Example Notebook](./example/tutorial-notebook.ipynb) | Jupyter Book formatting, ipyleaflet | n/a |  Not recorded |
-| [ICESat-2 photon classification](./photon_classifier) | Machine Learning, PyTorch | ATL07 | TODO |
+| [ICESat-2 Mission](./mission-overview/icesat-2-mission-overview.ipynb) | ICESat-2 Mission and Products | n/a |  Not recorded |
+| [Cloud Computing](./cloud-computing/00-goals-and-outline.ipynb) | Cloud Computing Tutorial | n/a |  Not recorded |
+| [Notebooks to Packages](./nb-to-package/index.md) | All about Python classes to packages | n/a |  Not recorded |
+| [ICESat-2 photon classification](./photon_classifier) | Machine Learning, PyTorch | ATL07 | Not recorded |
