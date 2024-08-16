@@ -21,7 +21,13 @@ parts:
     - file: tutorials/index
       sections:
         - file: tutorials/example/tutorial-notebook
-        - file: tutorials/nb-to-package/index.md
+        - file: tutorials/nb-to-package/index
+          sections:
+            - file: tutorials/nb-to-package/intro
+              sections:
+              - file: tutorials/nb-to-package/sample.ipynb
+            - file: tutorials/nb-to-package/package
+            - file: tutorials/nb-to-package/community
         - file: tutorials/mission-overview/icesat-2-mission-overview
         - file: tutorials/cloud-computing/00-goals-and-outline
           sections:
