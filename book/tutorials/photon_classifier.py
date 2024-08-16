@@ -32,6 +32,13 @@
 
 # %% [markdown]
 # ## Part 0: Setup
+#
+# Let's start by importing all the libraries needed for data access, processing and
+# visualization later. If you're running this on CryoCloud's default image without
+# Pytorch installed, uncomment and run the first cell before continuing.
+
+# %%
+# # !mamba install -y pytorch
 
 # %%
 import earthaccess
