@@ -5,7 +5,6 @@ format: jb-book
 parts:
 - caption: Details
   chapters:
-    - file: logistics
     - title: Schedule
       url: https://2024.hackweek.io/index.html?jump_to=schedule
     - title: Team
@@ -17,6 +16,7 @@ parts:
     - file: preliminary/checklist
     - file: preliminary/git
 - caption: Tutorials
+  maxdepth: 1
   chapters:
     - file: tutorials/index
       sections:
@@ -28,13 +28,19 @@ parts:
               - file: tutorials/nb-to-package/sample.ipynb
             - file: tutorials/nb-to-package/package
             - file: tutorials/nb-to-package/community
+        - file: tutorials/mission-overview/icesat-2-mission-overview
+        - file: tutorials/cloud-computing/00-goals-and-outline
+          sections:
+            - file: tutorials/cloud-computing/01-cloud-computing
+            - file: tutorials/cloud-computing/02-cloud-data-access
+            - file: tutorials/cloud-computing/03-cloud-optimized-data-access
+            - file: tutorials/cloud-computing/04-cloud-optimized-icesat2
+            - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
+              options:
+                - titlesonly: true
 - caption: Projects
   chapters:
-    - file: projects/list_of_projects
     - file: projects/index
-      sections:
-        - file: projects/project_roadmap
-        - file: projects/project_initialization
 - caption: Reference
   chapters:
     - file: reference/glossary
