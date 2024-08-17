@@ -1,12 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from co2_emissions import CO2
+from co2_emissions import Constant_CO2, SSPEmissions
 
 class VSCM:
 
-	def __init__(self, start_year, emd_year, co2_ppm, sensitivity, c0, t0):
-		self.y_start = start_year
-		self.y_end = emd_year
+	def __init__(self, start_year, t0, c0, sensitivity, co2_ppm):
+		self.y0 = start_year
 		self.s = sensitivity
 		self._co2_ppm = co2_ppm
 		self.time = [start_year]
@@ -14,13 +13,13 @@ class VSCM:
 		self.co2 = [c0]
 
 
-	def run(self):
+	def run(self, end_year):
 		i = 0
-		while i + self.y_start <= self.y_end:
-			year = self.y_start + i
+		while i + self.time[-1] <= end_year:
+			year = self.y0 + i
 			t0 = self.temp[-1]
 			c0 = self.co2[-1]
-			c = self._co2_ppm.get_ppm(year)
+			c = self._co2_ppm.get_CO2_ppm(year)
 			t = t0 + self.s * np.log2(c / c0)
 
 			self.time.append(year)
@@ -48,11 +47,16 @@ class VSCM:
 
 if __name__ == '__main__':
 	start_year = 2015
-	end_year = 2115
 	c0 = 400
-	co2_ppm = CO2(c0, start_year, 10)
 	t0 = 14.65
 
-	my_model = VSCM(start_year, end_year, co2_ppm, 3, c0, 14.65)
-	my_model.run()
+	# constant emission scheme
+	co2_ppm = Constant_CO2(c0, start_year, 10)
+
+	# ssp scenario
+	co2_ppm = SSPEmissions(126)
+
+
+	my_model = VSCM(start_year, t0,  c0, 3, co2_ppm)
+	my_model.run(2100)
 	my_model.plot()
