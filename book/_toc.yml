@@ -38,6 +38,7 @@ parts:
             - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
               options:
                 - titlesonly: true
+        - file: tutorials/mental-health/index          
 - caption: Projects
   chapters:
     - file: projects/index
