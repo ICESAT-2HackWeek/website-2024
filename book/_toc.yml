@@ -38,7 +38,7 @@ parts:
             - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
               options:
                 - titlesonly: true
-        - file: tutorials/photon_classifier
+        - file: tutorials/machine-learning/photon_classifier.ipynb
 - caption: Projects
   chapters:
     - file: projects/index
@@ -48,4 +48,3 @@ parts:
     - file: reference/bibliography
     - file: reference/IS2-resources
     - file: reference/questions
-
