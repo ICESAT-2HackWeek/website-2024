@@ -63,6 +63,7 @@ In this section, we provide our initial curated list of resources. We acknowledg
 * Participating in supportive and inclusive communities: Many of us struggle alone and have inhibitions when discussing our feelings because we might fail to identify in the same way as our everyday workplace colleagues. This is particularly relevant if we identify ourselves as marginalized in some form or another. In these situations, engaging with communities and groups of scientists we can identify with personally might help us seek mentorship and rediscover our purpose. Along these lines, we provide an initial list of organizations that have a core focus on inclusivity and mentorship:
     * [Association for Women Geoscientits](https://www.awg.org/)
     * [Asian Americans and Pacific Islanders in Geosciences](https://aapigeosci.org/)
+    * [GeoLatinas](https://geolatinas.org/)
     * [Polar Impact](https://www.polarimpactnetwork.org/)
     * [CryoCommunity](https://cryocommunity.org/)
 
