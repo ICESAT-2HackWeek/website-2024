@@ -38,6 +38,7 @@ parts:
             - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
               options:
                 - titlesonly: true
+        - file: tutorials/mental-health/index          
         - file: tutorials/machine-learning/photon_classifier.ipynb
 - caption: Projects
   chapters:
