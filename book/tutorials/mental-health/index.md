@@ -45,7 +45,7 @@ Respecting everyone's time commitment, we have designed this session to be semi-
 
 ## Links to material
 
-In this section, we provide our initial curated list of resources. We acknowledge that this list is non-exhaustive, and encourage participants to suggest additional relevant resources with which they are familiar with.
+In this section, we provide our initial curated list of resources. We acknowledge that this list is not exhaustive and encourage participants to suggest additional relevant resources with which they are familiar :)```
 
 * Institution based mental health support: Many institutions have resources to support students and employees for their mental health needs. Here we provide examples for University of Washington students and employees as reference, but encourage participants for exploring similar resources at their respective institutions.
     * Anyone in an immediate crisis situation should call or text 988, or chat on [988Lifeline.org](https://988Lifeline.org).  
