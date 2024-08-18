@@ -49,6 +49,7 @@ In this section, we provide our initial curated list of resources. We acknowledg
 
 * Institution based mental health support: Many institutions have resources to support students and employees for their mental health needs. Here we provide examples for University of Washington students and employees as reference, but encourage participants for exploring similar resources at their respective institutions.
     * Anyone in an immediate crisis situation should call or text 988, or chat on [988Lifeline.org](https://988Lifeline.org).  
+    * Everyone in the UW community can access [SAFECAMPUS](https://www.washington.edu/safecampus/) resources for mental health and violence prevention assistance during regular work hours.
     * Students: All students at the University of Washington have access to same day crisis counselling through the [Husky Helpline](https://wellbeing.uw.edu/huskyhelpline/). 
     * More structured support can be accessed through the [peer wellness coaching group](https://livewell.uw.edu/pwc/), [UW Mental health counselling center](https://wellbeing.uw.edu/unit/counseling-center/), and [group therapy programs](https://www.polisci.washington.edu/news/2023/01/19/advertised-groups-winter-2023). 
     * Services by the Mental Health Counselling Center are all covered by student insurance (ISHIP or GAIP). We encourage participants to learn more about these resources [here](https://wellbeing.uw.edu/mental-health/mental-health-resources/).
