@@ -34,7 +34,7 @@ This session is optional and we will establish norms that ensure confidentiality
 
 ## Preparing for the Session
 
-We invite participants to arrive with a willingness to share stories and listen to their colleagues. This session is intended to be a no-device session, to ensure a distraction-free, immersive experience for all of us. We request all of the interested particpants to familiarize theselves with some our shared norms (above), which will also be provided in printed format during the session. The hackweek team will provide stationary materials to participants for personal note taking! 
+We invite participants to arrive with a willingness to share stories and listen to their colleagues. This session is intended to be a no-device session, to ensure a distraction-free, immersive experience for all of us. We request all of the interested participants to familiarize theselves with some our shared norms (above), which will also be provided in printed format during the session. The hackweek team will provide stationery materials to participants for personal note taking! 
 
 We encourage people from all career-stages to join this session!
 
