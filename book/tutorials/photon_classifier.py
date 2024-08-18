@@ -18,8 +18,8 @@
 #
 # A machine learning pipeline from point clouds to photon classifications.
 #
-# Reimplementation of
-# https://github.com/YoungHyunKoo/IS2_ML/blob/main/01_find_overlapped_data.ipynb
+# Reimplementation of [Koo et al., 2023](https://doi.org/10.1016/j.rse.2023.113726),
+# based on code available at https://github.com/YoungHyunKoo/IS2_ML.
 
 # %% [markdown]
 # ```{admonition} Learning Objectives
@@ -29,6 +29,9 @@
 #   benefits/challenges of each
 # - Learn the potential of using ML for ICESat-2 photon classification
 # ```
+#
+# ![ICESat-2 ATL07 sea ice photon classification ML pipeline](https://github.com/user-attachments/assets/509dab2d-d25d-417f-97ff-fc966f656ddf)
+
 
 # %% [markdown]
 # ## Part 0: Setup
@@ -61,20 +64,20 @@ import tqdm
 # - Get ATL07 data using [earthaccess](https://earthaccess.readthedocs.io)
 # - Find coincident Sentinel-2 imagery by searching over a
 #   [STAC API](https://pystac-client.readthedocs.io/en/v0.8.3/usage.html#itemsearch)
-# - Filter to only strong beams, and 6 data variables
-#
-# TODO: copy Table 1 from Koo et al., 2023 paper
+# - Filter to only strong beams, and 6 key data variables + ancillary variables
 
 # %% [markdown]
 # ### Search for ATL07 data over study area
 #
 # In this sub-section, we'll set up a spatiotemporal query to look for ICESat-2 ATL07
 # sea ice data over the Ross Sea region around late October 2019.
+#
+# Ref: https://earthaccess.readthedocs.io/en/latest/quick-start/#get-data-in-3-steps
 
 # %%
 # Authenticate using NASA EarthData login
 auth = earthaccess.login()
-s3 = earthaccess.get_s3fs_session(daac="NSIDC")  # Start an AWS S3 session
+# s3 = earthaccess.get_s3fs_session(daac="NSIDC")  # Start an AWS S3 session
 
 # %%
 # Set up spatiotemporal query for ATL07 sea ice product
@@ -146,7 +149,8 @@ for granule in tqdm.tqdm(iterable=granules):
             break  # uncomment this line if you want to find more matches
 
 # %% [markdown]
-# We should have found a match! In case you missed it, these are the two variables pointing to the data we'll use later:
+# We should have found a match! In case you missed it, these are the two variables
+# pointing to the data we'll use later:
 #
 # - `granule` - ICESat-2 ATL07 sea ice point cloud data
 # - `item_collection` - Sentinel-2 optical satellite images
@@ -177,6 +181,10 @@ if orient == 0:
 elif orient == 1:
     strong_beams = ["gt3r", "gt2r", "gt1r"]
 strong_beams
+
+# %% [markdown]
+# To keep things simple, we'll only read one beam today, but feel free to get all three
+# using a for-loop in your own project.
 
 # %%
 for beam in strong_beams:
@@ -268,6 +276,10 @@ item = item_collection.items[0]
 item
 
 
+# %% [markdown]
+# Use [`stackstac.stack`](https://stackstac.readthedocs.io/en/v0.5.1/api/main/stackstac.stack.html)
+# to get the RGB bands from the Sentinel-2 image.
+
 # %%
 # Get RGB bands from Sentinel-2 STAC item as an xarray.DataArray
 da_image = stackstac.stack(
@@ -336,7 +348,9 @@ df_red = pygmt.grdtrack(
 
 # %%
 # Plot cross-section
-df_red.plot.scatter(x="y", y="red_band_value", title="Red band values in y-direction")
+df_red.plot.scatter(
+    x="y", y="red_band_value", title="Sentinel-2 red band values in y-direction"
+)
 
 # %% [markdown]
 # The cross-section view shows most points having a Red band reflectance value of 10000,
@@ -346,7 +360,9 @@ df_red.plot.scatter(x="y", y="red_band_value", title="Red band values in y-direc
 # (Click 'Show code cell content' below if you'd like to see the histogram plot)
 
 # %% editable=true slideshow={"slide_type": ""} tags=["hide-cell"]
-df_red.hist(column="red_band_value", bins=30)
+df_red.plot(
+    kind="hist", column="red_band_value", bins=30, title="Sentinel-2 red band values"
+)
 
 # %% [markdown]
 # To keep things simple, we'll label the `surface_type` of each ATL07 point
