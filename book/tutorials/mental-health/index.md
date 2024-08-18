@@ -60,7 +60,7 @@ In this section, we provide our initial curated list of resources. We acknowledg
     * [climate pshchiatry alliance](https://www.climatepsychiatry.org/)
     * [Workplace mental health and well-being](https://www.hhs.gov/surgeongeneral/priorities/workplace-well-being/index.html)
     * [Work That Reconnects Network](https://www.hhs.gov/surgeongeneral/priorities/workplace-well-being/index.html)
-* Participating in supportive communities: Many of us struggle alone and have inhibtations to discuss our feelings because we might fail to identify in the same way as our collagues in the workplace. In these situations, finding communities and groups of scientists whom we can identify with personally, seek mentorship from, and rediscover purpose can be helpful. 
+* Participating in supportive and inclusive communities: Many of us struggle alone and have inhibitions when discussing our feelings because we might fail to identify in the same way as our everyday workplace colleagues. This is particularly relevant if we identify ourselves as marginalized in some form or another. In these situations, engaging with communities and groups of scientists we can identify with personally might help us seek mentorship and rediscover our purpose. Along these lines, we provide an initial list of organizations that have a core focus on inclusivity and mentorship:
     * [Association for Women Geoscientits](https://www.awg.org/)
     * [Asian Americans and Pacific Islanders in Geosciences](https://aapigeosci.org/)
     * [Polar Impact](https://www.polarimpactnetwork.org/)
