@@ -40,7 +40,7 @@ We encourage people from all career-stages to join this session!
 
 ## Broad format
 
-Respecting everyone's time committment, we have designed this session to be semi-interactive. The session will be a mix of interview-style interaction between Anthony and Shashank, and include small group discussions between participants in small groups. 
+Respecting everyone's time commitment, we have designed this session to be semi-interactive. The session will be a mix of interview-style interaction between Anthony and Shashank, and include small group discussions between participants in small groups. 
 
 
 ## Links to material
