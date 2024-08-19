@@ -23,9 +23,12 @@ parts:
         - file: tutorials/nb-to-package/index.md
         - file: tutorials/open-science/index.md
           sections:
-          - file: tutorials/open-science/data-formats-and-metadata.md
+          - file: tutorials/open-science/data-formats-and-metadata.ipynb
+            sections:
+            - file: tutorials/open-science/open_science_lesson.ipynb
           - file: tutorials/open-science/licensing.md
           - file: tutorials/open-science/archiving.md
+          - file: tutorials/open-science/resources.md
 - caption: Projects
   chapters:
     - file: projects/index
