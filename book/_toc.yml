@@ -25,6 +25,9 @@ parts:
         - file: tutorials/nb-to-package/index
           sections:
             - file: tutorials/nb-to-package/OOP_intro
+              sections:
+              - file: tutorials/nb-to-package/climate_model.py
+              - file: tutorials/nb-to-package/co2_emissions.py
             - file: tutorials/nb-to-package/intro
               sections:
               - file: tutorials/nb-to-package/sample.ipynb
