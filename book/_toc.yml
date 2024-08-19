@@ -24,6 +24,7 @@ parts:
         - file: tutorials/cryocloud_demo/CryoCloud_demo.ipynb
         - file: tutorials/nb-to-package/index
           sections:
+            - file: tutorials/nb-to-package/OOP_intro
             - file: tutorials/nb-to-package/intro
               sections:
               - file: tutorials/nb-to-package/sample.ipynb
