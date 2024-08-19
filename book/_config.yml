@@ -39,7 +39,7 @@ execute:
     - "**/geospatial-advanced.ipynb"
     - "cloud-computing/04-cloud-optimized-icesat2.ipynb"
     - "cloud-computing/atl08_parquet_files/atl08_parquet.ipynb"
-    - "machine-learning/photon_classifier.ipynb"
+    - "machine-learning/point_cloud_classifier.ipynb"
   allow_errors: false
   # Per-cell notebook execution limit (seconds)
   timeout: 300
