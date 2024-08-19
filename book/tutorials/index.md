@@ -12,3 +12,4 @@ Below you'll find a table keeping track of all tutorials presented at this event
 | [Cloud Computing](./cloud-computing/00-goals-and-outline.ipynb) | Cloud Computing Tutorial | n/a |  Not recorded |
 | [Notebooks to Packages](./nb-to-package/index.md) | All about Python classes to packages | n/a |  Not recorded |
 | [ICESat-2 photon classification](./machine-learning/photon_classifier.ipynb) | Machine Learning, PyTorch | ATL07 | Not recorded |
+| [ICESat-2 Data Access](./data_access/ICESat2_Data_Access_Tutorial.ipynb) | ICESat-2 Data Access: icepyx, sliderule, h5coro | ATL03, ATL06, ATL08 | Not recorded |
