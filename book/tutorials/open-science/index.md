@@ -29,9 +29,9 @@ What, if anything, could you do to increase the chance of being able to get back
 
 1. [](./data-formats-and-metadata.md)
     - Which file format?
-    - 
+    - [](./open_science_lesson.ipynb)
 2. [](./licensing.md)
 3. [](./archiving.md)
-4. [](./resources.md)
+4. [](./resources.md)  
 
 
