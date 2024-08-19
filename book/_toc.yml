@@ -21,6 +21,7 @@ parts:
     - file: tutorials/index
       sections:
         - file: tutorials/example/tutorial-notebook
+        - file: tutorials/cryocloud_demo/cryocloud_demo
         - file: tutorials/nb-to-package/index
           sections:
             - file: tutorials/nb-to-package/intro
