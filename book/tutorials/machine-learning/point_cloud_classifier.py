@@ -154,8 +154,6 @@ for granule in tqdm.tqdm(iterable=granules):
 # - `granule` - ICESat-2 ATL07 sea ice point cloud data
 # - `item_collection` - Sentinel-2 optical satellite images
 
-# %%
-
 # %% [markdown]
 # ### Filter to strong beams and required data variables
 #
@@ -590,9 +588,9 @@ for epoch in tqdm.tqdm(iterable=range(max_epochs)):
         optimizer.step()
         optimizer.zero_grad()
 
-        # Report metrics
-        current = (i + 1) * len(x)
-        print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
+    # Report metrics
+    current = (i + 1) * len(x)
+    print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
 
 # %% [markdown]
@@ -600,6 +598,78 @@ for epoch in tqdm.tqdm(iterable=range(max_epochs)):
 # decreasing, which means the error between the predicted and groundtruth value is
 # getting smaller.
 
+# %% [markdown]
+#
+# ### Inference results
+#
+# Besides monitoring the loss value, it is also good to calculate a metric like
+# Precision, Recall or F1-score. Let's first run the model in 'inference' mode to get
+# predictions.
+
+# %%
+gdf["predicted_surface_type"] = None  # create new column with NaN to store results
+with torch.inference_mode():
+    for i, batch in enumerate(dataloader):
+        minibatch: torch.Tensor = batch[0]
+        x = minibatch[:, :6]
+        prediction = model(x=x)  # one-hot encoded predictions
+        prediction_labels = torch.argmax(input=prediction, dim=1)  # 0/1/2 labels
+
+        start_index = i * dataloader.batch_size
+        stop_index = start_index + len(minibatch) - 1
+        gdf.loc[start_index:stop_index, "predicted_surface_type"] = prediction_labels
+
+# %% [markdown]
+#
+# ```{caution}
+# Ideally, you would want to run inference on a hold-out validation or test set, rather
+# than the points the model was trained on! See e.g.
+# [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/1.5/modules/generated/sklearn.model_selection.train_test_split.html)
+# on how this can be done.
+# ```
+
+# %% [markdown]
+#
+# Now that we have the predicted results in the `predicted_surface_type` column, we can
+# compare it with the 'groundtruth' labels in the 'surface_type' column by visualizing
+# it in a confusion matrix.
+
+# %%
+pd.crosstab(
+    index=gdf.surface_type,
+    columns=gdf.predicted_surface_type,
+    rownames=["Actual"],
+    colnames=["Predicted"],
+    margins=True,
+)
+
+# %% [markdown]
+#
+# ```{attention}
+# Oo, it looks like our model isn't producing very good results! It's practically only
+# predicting thick sea ice (class: 2). There could be many reasons for this, and it's up
+# to you to figure out a solution, either by changing the data, or adjusting the model.
+#
+# Data-centric approaches:
+# - Add more data! Maybe <10000 points isn't enough, try getting more!
+# - Check the labels! Are there wrongly labelled points? Is the Sentinel-2
+#   dark/gray/bright bins above too simplistic? Investigate!
+# - Normalize the data value range. The original paper by Koo et al., 2023 applied
+#   min-max normalization on the 6 input columns, try and apply that too!
+#
+# Model-centric appraoches:
+# - Manage class imbalance. There are a lot more thick sea ice points than thin sea ice
+#   or water points, could we modify the loss function to weigh rare classes higher?
+# - Adjust the model hyperparameters, try adjusting the learning rate, train the model
+#   for more epochs, etc.
+# - Tweak the model architecture. The original paper by Koo et al., 2023 used a
+#   [`tanh`](https://pytorch.org/docs/2.4/generated/torch.nn.Tanh.html) activation
+#   function in the neural network layers. Will adding that help?
+#
+# The list above isn't exhaustive, and different machine learning practicioners may have
+# other suggestions on what to try next. That said, you now have a Machine Learning
+# ready GeoParquet dataset to iterate on ideas more quickly. Good luck!
+# ```
 
 # %% [markdown]
 # ## References
@@ -607,6 +677,8 @@ for epoch in tqdm.tqdm(iterable=range(max_epochs)):
 #   Sea ice surface type classification of ICESat-2 ATL07 data by using data-driven
 #   machine learning model: Ross Sea, Antarctic as an example. Remote Sensing of
 #   Environment, 296, 113726. https://doi.org/10.1016/j.rse.2023.113726
-
-
-# %%
+# - Petty, A. A., Bagnardi, M., Kurtz, N. T., Tilling, R., Fons, S., Armitage, T.,
+#   Horvat, C., & Kwok, R. (2021). Assessment of ICESat‐2 Sea Ice Surface
+#   Classification with Sentinel‐2 Imagery: Implications for Freeboard and New Estimates
+#   of Lead and Floe Geometry. Earth and Space Science, 8(3), e2020EA001491.
+#   https://doi.org/10.1029/2020EA001491
