@@ -39,9 +39,9 @@ parts:
             - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
               options:
                 - titlesonly: true
-        - file: tutorials/mental-health/index          
+        - file: tutorials/mental-health/index
         - file: tutorials/data_access/ICESat2_Data_Access_Tutorial.ipynb
-        - file: tutorials/machine-learning/photon_classifier.ipynb
+        - file: tutorials/machine-learning/point_cloud_classifier.ipynb
 - caption: Projects
   chapters:
     - file: projects/index
