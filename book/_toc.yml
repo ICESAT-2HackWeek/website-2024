@@ -27,7 +27,9 @@ parts:
             - file: tutorials/nb-to-package/OOP_intro
               sections:
               - file: tutorials/nb-to-package/climate_model.py
+                title: Climate Model Example
               - file: tutorials/nb-to-package/co2_emissions.py
+                title: CO2 Emissions for VSCM
             - file: tutorials/nb-to-package/intro
               sections:
               - file: tutorials/nb-to-package/sample.ipynb
