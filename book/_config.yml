@@ -40,6 +40,7 @@ execute:
     - "cloud-computing/04-cloud-optimized-icesat2.ipynb"
     - "cloud-computing/atl08_parquet_files/atl08_parquet.ipynb"
     - "machine-learning/point_cloud_classifier.ipynb"
+    - "**/ICESat2_Data_Access_Tutorial.ipynb"
   allow_errors: false
   # Per-cell notebook execution limit (seconds)
   timeout: 300
@@ -65,6 +66,7 @@ bibtex_bibfiles:
   - references.bib
 sphinx:
   config:
+    suppress_warnings: ["mystnb.unknown_mime_type", "myst.header"]
     bibtex_reference_style: author_year  # or label, super, \supercite
     nb_custom_formats:
         .py:
