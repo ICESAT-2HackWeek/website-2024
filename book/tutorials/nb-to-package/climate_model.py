@@ -1,3 +1,6 @@
+# Very Simpl Climate Model
+##########################
+
 import numpy as np
 import matplotlib.pyplot as plt
 from co2_emissions import Constant_CO2, SSPEmissions
