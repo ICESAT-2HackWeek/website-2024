@@ -1,6 +1,6 @@
 # Mental Health in the Geosciences
 
-This session was designed by Anthony Arendt and Shashank Bhushan. It was inspired by a session on mental health offered as part of [OceanHackweek](https://oceanhackweek.org/). Content has been reviewed by [Gitika Talwar, PhD](https://www.psychologytoday.com/us/therapists/gitika-talwar-seattle-wa/1193368), a Licenced Professional Therapist.
+This session was designed by Anthony Arendt and Shashank Bhushan. It was inspired by a session on mental health offered as part of [OceanHackweek](https://oceanhackweek.org/). Content has been reviewed by [Gitika Talwar, PhD](https://www.psychologytoday.com/us/therapists/gitika-talwar-seattle-wa/1193368), a Licensed Clinical-Community Psychologist.
 
 ## Norms and Shared Agreements
 
@@ -45,7 +45,7 @@ Respecting everyone's time commitment, we have designed this session to be semi-
 
 ## Links to material
 
-In this section, we provide our initial curated list of resources. We acknowledge that this list is not exhaustive and encourage participants to suggest additional relevant resources with which they are familiar :)```
+In this section, we provide our initial curated list of resources. We acknowledge that this list is not exhaustive and encourage participants to suggest additional relevant resources with which they are familiar :)
 
 * Institution based mental health support: Many institutions have resources to support students and employees for their mental health needs. Here we provide examples for University of Washington students and employees as reference, but encourage participants for exploring similar resources at their respective institutions.
     * Anyone in an immediate crisis situation should call or text 988, or chat on [988Lifeline.org](https://988Lifeline.org).  
@@ -57,7 +57,7 @@ In this section, we provide our initial curated list of resources. We acknowledg
     * Everyone enrolled with [PEBB](https://www.hca.wa.gov/pebb-benefits-admins/pebb-benefits#:~:text=The%20Public%20Employees%20Benefits%20Board,Care%20Assistance%20Program%20(DCAP).) is eligible.
 * Resources for workplace-related mental health issues relevant to geoscientists:
     * [Climate Anxiety & Eco-Grief](https://www.drjenniferatkinson.com/)
-    * [climate pshchiatry alliance](https://www.climatepsychiatry.org/)
+    * [climate psychiatry  alliance](https://www.climatepsychiatry.org/)
     * [Workplace mental health and well-being](https://www.hhs.gov/surgeongeneral/priorities/workplace-well-being/index.html)
     * [Work That Reconnects Network](https://www.hhs.gov/surgeongeneral/priorities/workplace-well-being/index.html)
 * Participating in supportive and inclusive communities: Many of us struggle alone and have inhibitions when discussing our feelings because we might fail to identify in the same way as our everyday workplace colleagues. This is particularly relevant if we identify ourselves as marginalized in some form or another. In these situations, engaging with communities and groups of scientists we can identify with personally might help us seek mentorship and rediscover our purpose. Along these lines, we provide an initial list of organizations that have a core focus on inclusivity and mentorship:
