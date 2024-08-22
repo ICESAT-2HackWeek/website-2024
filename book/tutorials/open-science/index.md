@@ -27,11 +27,11 @@ What, if anything, could you do to increase the chance of being able to get back
 
 ## Outline
 
-1. [](./data-formats-and-metadata.md)
+1. [](./data-formats-and-metadata.ipynb)
     - Which file format?
     - [](./open_science_lesson.ipynb)
 2. [](./licensing.md)
 3. [](./archiving.md)
 4. [](./resources.md)  
 
-[Michael's Open Science Slides](https://github.com/andypbarrett/website-2024/blob/open-science-plenary/book/tutorials/open-science/Open_Science_Intro_HW_2024.pdf)
+
