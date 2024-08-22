@@ -2,14 +2,14 @@
 
 ## Open Science
 
-[NASA Transform to Open Sciences (TOPS)](https://nasa.github.io/Transform-to-Open-Science/)
+[NASA Transform to Open Sciences (TOPS)](https://nasa.github.io/Transform-to-Open-Science/)  
 [A Practical Guide for Open, Free & FAIR NASA Earth Science Data Products](https://wiki.earthdata.nasa.gov/pages/viewpage.action?pageId=378738424)
 
 ## File structures
 
-% [NASA Data Producers Guide]()
+[NASA Data Producers Guide](https://www.earthdata.nasa.gov/esdis/esco/standards-and-practices/data-product-development-guide-for-data-producers/dpdg-v2)  
 % [Charlie Zender's recommendations]()
-[CF Conventions](https://cfconventions.org/cf-conventions/cf-conventions.html)
+[CF Conventions](https://cfconventions.org/cf-conventions/cf-conventions.html)  
 [CF Standard Name Table](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html)
 
 ## Formats
@@ -23,7 +23,7 @@
 % [Shapefile]()
 % [GeoJSON]()
 
-[Cloud Optimized Geospatial Formats Guide](https://guide.cloudnativegeo.org/)
+[Cloud Optimized Geospatial Formats Guide](https://guide.cloudnativegeo.org/)  
 
 
 ## Tools
@@ -34,3 +34,7 @@
 % [`pandas`]()
 % [`geopandas`]()
 % [`shapely`]()
+
+## General
+
+[Working with NetCDF Files](https://data.arcticobserving.org/node/59)  
