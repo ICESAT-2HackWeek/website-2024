@@ -50,8 +50,7 @@ dependencies:
   # - jupyterlab-git~=0.50.0
   # - jupyterlab-h5web~=11.1.0
   - jupyterlab-myst~=2.4.2
-#  - jupyterlab-plotly~=5.18.0 # Outdated accoring to jupyterlab
-  # - jupyterlab_pygments~=0.3.0 # To bring extension uptodate
+  # - jupyterlab_pygments~=0.3.0 # To bring extension up-to-date
   - jupytext~=1.16.1
   - nbdime~=4.0.1
   # JupyterBook Addons
@@ -89,6 +88,9 @@ dependencies:
   - plotly~=5.18.0
   - seaborn~=0.13.2 # statistical plotting with matplotlib
 
+  # Machine Learning packages
+  - pytorch~=2.3.1=*cpu*
+
   # Geospatial data packages
   - geopandas>=0.14.4
   - pygmt~=0.12.0
@@ -112,6 +114,7 @@ dependencies:
   - earthaccess~=0.10.0
   # Access datasets exposed via STAC
   - pystac-client~=0.8.3
+  - stackstac~=0.5.1
   # Access datasets exposed via intake catalogs
   - intake==0.6.6
   - intake-esm>=2023.7.7

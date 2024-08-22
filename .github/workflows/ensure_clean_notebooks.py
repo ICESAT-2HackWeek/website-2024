@@ -30,13 +30,13 @@ ipynbs = [p for p in all_ipynbs if not '.ipynb_checkpoints' in p]
 
 results = []
 for notebook in ipynbs:
-    #if not notebook in exclude_notebooks:
-    print(f'Checking {notebook}...')
-    nb = nbformat.read(notebook, as_version=nbformat.NO_CONVERT)
-    result = nbc.check_notebook(nb,
-                                remove_empty_cells=False,
-                                preserve_cell_metadata=True)
-    results.append(result)
+    if not notebook in exclude_notebooks:
+        print(f'Checking {notebook}...')
+        nb = nbformat.read(notebook, as_version=nbformat.NO_CONVERT)
+        result = nbc.check_notebook(nb,
+                                    remove_empty_cells=False,
+                                    preserve_cell_metadata=True)
+        results.append(result)
 
 if False in results:
     sys.exit(1)

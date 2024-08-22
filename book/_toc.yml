@@ -16,11 +16,11 @@ parts:
     - file: preliminary/checklist
     - file: preliminary/git
 - caption: Tutorials
+  maxdepth: 1
   chapters:
     - file: tutorials/index
       sections:
         - file: tutorials/example/tutorial-notebook
-        - file: tutorials/nb-to-package/index.md
         - file: tutorials/open-science/index.md
           sections:
           - file: tutorials/open-science/data-formats-and-metadata.ipynb
@@ -29,6 +29,28 @@ parts:
           - file: tutorials/open-science/licensing.md
           - file: tutorials/open-science/archiving.md
           - file: tutorials/open-science/resources.md
+        - file: tutorials/cryocloud_demo/CryoCloud_demo.ipynb
+        - file: tutorials/nb-to-package/index
+          sections:
+            - file: tutorials/nb-to-package/OOP_intro
+            - file: tutorials/nb-to-package/intro
+              sections:
+              - file: tutorials/nb-to-package/sample.ipynb
+            - file: tutorials/nb-to-package/package
+            - file: tutorials/nb-to-package/community
+        - file: tutorials/mission-overview/icesat-2-mission-overview
+        - file: tutorials/cloud-computing/00-goals-and-outline
+          sections:
+            - file: tutorials/cloud-computing/01-cloud-computing
+            - file: tutorials/cloud-computing/02-cloud-data-access
+            - file: tutorials/cloud-computing/03-cloud-optimized-data-access
+            - file: tutorials/cloud-computing/04-cloud-optimized-icesat2
+            - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
+              options:
+                - titlesonly: true
+        - file: tutorials/mental-health/index
+        - file: tutorials/data_access/ICESat2_Data_Access_Tutorial.ipynb
+        - file: tutorials/machine-learning/point_cloud_classifier.ipynb
 - caption: Projects
   chapters:
     - file: projects/index
@@ -38,4 +60,3 @@ parts:
     - file: reference/bibliography
     - file: reference/IS2-resources
     - file: reference/questions
-
