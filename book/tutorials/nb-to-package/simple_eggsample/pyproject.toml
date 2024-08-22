@@ -1,0 +1,12 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "eggsample"
+version = "0.1.0"
+description = "The eggsample from an eggsellent cook"
+requires-python = ">= 3.10"
+
+[project.scripts]
+eggsample = "eggsample.cli:main"
