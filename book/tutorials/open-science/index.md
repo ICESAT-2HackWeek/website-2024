@@ -34,4 +34,4 @@ What, if anything, could you do to increase the chance of being able to get back
 3. [](./archiving.md)
 4. [](./resources.md)  
 
-
+[Michael's Open Science Slides](./Open_Science_Intro_HW_2024.pdf)
