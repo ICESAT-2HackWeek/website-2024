@@ -3,7 +3,7 @@
 In this tutorial, we'll be learning how to structure object-oriented code 
 to take full advantage of this programming paradigm. 
 
-Follow along with the slides [`here`](./OOP.pdf)!
+Follow along with the slides [`here`](./OOP.pdf)! Here are the [`annotated slides`](./OOP_annotated.pdf) from the tutorial.
 
 We'll be using UCAR's ['Very Simple Climate Model'](https://scied.ucar.edu/interactive/simple-climate-model) as an example. 
 
