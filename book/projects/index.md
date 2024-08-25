@@ -17,4 +17,4 @@ Here is our current list of project for our {{dates}} {{ hackweek }} hackweek:
 
 | Project Name (with link to GitHub repo) | Short Description | Project Lead(s) |
 |:--------|:--------|:-----|
-| [Snow-Extrapolation](https://github.com/geo-smart/Snow-Extrapolation) | Goal: Improve National Snow Model (NSM) prediction performance in the Sierra Nevada mountains through domain constraints and the exploration of different ML algorithms. | Ryan Johnson |
+| [icepyx4gedi](https://github.com/ICESAT-2HackWeek/icepyx4gedi) | Goal: To create and/or extend methods and routines in the [`icepyx`](https://icepyx.readthedocs.io/en/latest) Python library to support GEDI footprint data products. | [Aaron Friesz](https://github.com/amfriesz) |
