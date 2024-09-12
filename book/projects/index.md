@@ -13,8 +13,10 @@ You can find our comprehensive guide for organizing projects before, during, and
 
 ## List of Projects
 
-Here is our current list of project for our {{dates}} {{ hackweek }} hackweek:
+Here is our list of projects for our {{dates}} {{ hackweek }} hackweek:
 
-| Project Name (with link to GitHub repo) | Short Description | Project Lead(s) |
+| Project Name (with link to GitHub repo) | Short Description | Project Lead(s) | Poster
 |:--------|:--------|:-----|
-| [icepyx4gedi](https://github.com/ICESAT-2HackWeek/icepyx4gedi) | Goal: To create and/or extend methods and routines in the [`icepyx`](https://icepyx.readthedocs.io/en/latest) Python library to support GEDI footprint data products. | [Aaron Friesz](https://github.com/amfriesz) |
+| [icepyx4gedi](https://github.com/ICESAT-2HackWeek/icepyx4gedi) | Goal: To create and/or extend methods and routines in the [`icepyx`](https://icepyx.readthedocs.io/en/latest) Python library to support GEDI footprint data products. | [Aaron Friesz](https://github.com/amfriesz) | [icepyx4gedi Poster](./posters/GEDI+icepyx_2024Hackweek_ReportOut.pdf)
+
+
