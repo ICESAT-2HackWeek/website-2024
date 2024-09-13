@@ -17,7 +17,7 @@ Here is our list of projects for our {{dates}} {{ hackweek }} hackweek:
 
 | Project Name (with link to GitHub repo) | Short Description | Project Lead(s) | Poster |
 |:--------|:--------|:-----|:-------|
-| [icepyx4gedi](https://github.com/ICESAT-2HackWeek/icepyx4gedi) [icepyx-fork](https://github.com/ICESAT-2HackWeek/icepyx)| Goal: To create and/or extend methods and routines in the [`icepyx`](https://icepyx.readthedocs.io/en/latest) Python library to support GEDI footprint data products. | [Aaron Friesz](https://github.com/amfriesz) | [icepyx4gedi Poster](./posters/GEDI+icepyx_2024Hackweek_ReportOut.pdf) |
+| [icepyx4gedi](https://github.com/ICESAT-2HackWeek/icepyx4gedi) [icepyx-fork](https://github.com/ICESAT-2HackWeek/icepyx)| Goal: To create and/or extend methods and routines in the [`icepyx`](https://icepyx.readthedocs.io/en/latest) Python library to support GEDI footprint data products. | [Aaron Friesz](https://github.com/amfriesz) | [icepyx4gedi Poster](./posters/GEDI+icepyx_2024Hackweek_ReportOut.jpg) |
 
 | [Near-Shore-Bathymetry](https://github.com/ICESAT-2HackWeek/Hackweek2024-ICESat-2-Near-Shore-Bathymetry) | Estimate coastal bathymetry | [Arnab Muhuri](https://github.com/arnab-muhuri) | [Bathymetry Poster]() |
 
