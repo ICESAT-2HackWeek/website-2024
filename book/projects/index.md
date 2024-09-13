@@ -19,7 +19,7 @@ Here is our list of projects for our {{dates}} {{ hackweek }} hackweek:
 |:--------|:--------|:-----|:-------|
 | [icepyx4gedi](https://github.com/ICESAT-2HackWeek/icepyx4gedi) [icepyx-fork](https://github.com/ICESAT-2HackWeek/icepyx)| Goal: To create and/or extend methods and routines in the [`icepyx`](https://icepyx.readthedocs.io/en/latest) Python library to support GEDI footprint data products. | [Aaron Friesz](https://github.com/amfriesz) | [icepyx4gedi Poster](./posters/GEDI+icepyx_2024Hackweek_ReportOut.jpg) |
 
-| [Near-Shore-Bathymetry](https://github.com/ICESAT-2HackWeek/Hackweek2024-ICESat-2-Near-Shore-Bathymetry) | Estimate coastal bathymetry | [Arnab Muhuri](https://github.com/arnab-muhuri) | Bathymetry Poster-./posters/ |
+| [Near-Shore-Bathymetry](https://github.com/ICESAT-2HackWeek/Hackweek2024-ICESat-2-Near-Shore-Bathymetry) | Estimate coastal bathymetry | [Arnab Muhuri](https://github.com/arnab-muhuri) | [Bathymetry Poster](./posters/icesat2_bathy_final_presentation.pdf) |
 
 | [GroundingLine-Greenland](https://github.com/ICESAT-2HackWeek/GroundingLine-Greenland) | Derive the grounding line position of Greenland's tidewater glaciers | [Hui Gao](https://github.com/hui-97) | [GroundingLine Poster](./posters/Grounding_line_Greenland.pdf) |
 
