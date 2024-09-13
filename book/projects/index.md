@@ -27,4 +27,18 @@ Here is our list of projects for our {{dates}} {{ hackweek }} hackweek:
 
 | [Off_Track](https://github.com/ICESAT-2HackWeek/off_track) | Exploring what's between ICESat-2 reference tracks | [Ben Smith](https://github.com/SmithB) | [Off Track Poster](./posters/Off_track_poster_slide.pdf) |
 
+## Project Posters
 
+```{image} ./posters/GEDI+icepyx_2024Hackweek_ReportOut.jpg
+:alt: GEDI+icepyx poster
+:class: bg-primary mb-1
+:width: 700px
+:align: center
+```
+
+```{image} ./posters/icesat2_bathy_final_presentation.pdf
+:alt: bathymetry poster
+:class: bg-primary mb-1
+:width: 700px
+:align: center
+```
