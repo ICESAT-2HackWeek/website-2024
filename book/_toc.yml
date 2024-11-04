@@ -20,7 +20,6 @@ parts:
   chapters:
     - file: tutorials/index
       sections:
-        - file: tutorials/example/tutorial-notebook
         - file: tutorials/open-science/index.md
           sections:
           - file: tutorials/open-science/data-formats-and-metadata.ipynb
