@@ -1,9 +1,7 @@
 # ICESat-2 Hackweek 2024 JupyterBook
 [![Deploy](https://github.com/ICESAT-2HackWeek/website-2024/actions/workflows/deploy.yaml/badge.svg)](https://github.com/ICESAT-2HackWeek/website-2024/actions/workflows/deploy.yaml)
 
-## How to cite
-
-After the Hackweek, we will create a Zenodo archive of this Jupyter Book and post the DOI here.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14052799.svg)](https://zenodo.org/badge/DOI/10.5281/zenodo.14052799)
 
 
 ## How to contribute
