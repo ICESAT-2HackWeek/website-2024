@@ -20,24 +20,7 @@ parts:
   chapters:
     - file: tutorials/index
       sections:
-        - file: tutorials/example/tutorial-notebook
-        - file: tutorials/open-science/index.md
-          sections:
-          - file: tutorials/open-science/data-formats-and-metadata.ipynb
-            sections:
-            - file: tutorials/open-science/open_science_lesson.ipynb
-          - file: tutorials/open-science/licensing.md
-          - file: tutorials/open-science/archiving.md
-          - file: tutorials/open-science/resources.md
         - file: tutorials/cryocloud_demo/CryoCloud_demo.ipynb
-        - file: tutorials/nb-to-package/index
-          sections:
-            - file: tutorials/nb-to-package/OOP_intro
-            - file: tutorials/nb-to-package/intro
-              sections:
-              - file: tutorials/nb-to-package/sample.ipynb
-            - file: tutorials/nb-to-package/package
-            - file: tutorials/nb-to-package/community
         - file: tutorials/mission-overview/icesat-2-mission-overview
         - file: tutorials/cloud-computing/00-goals-and-outline
           sections:
@@ -48,9 +31,29 @@ parts:
             - file: tutorials/cloud-computing/atl08_parquet_files/atl08_parquet
               options:
                 - titlesonly: true
-        - file: tutorials/mental-health/index
+        - title: Data Access
+          url: https://snowex-2024.hackweek.io/tutorials/Data_access/index.html
         - file: tutorials/data_access/ICESat2_Data_Access_Tutorial.ipynb
         - file: tutorials/machine-learning/point_cloud_classifier.ipynb
+        - title: Machine Learning for Snow Studies
+          url: https://snowex-2024.hackweek.io/tutorials/NN_with_Pytorch/intro.html
+        - file: tutorials/nb-to-package/index
+          sections:
+            - file: tutorials/nb-to-package/OOP_intro
+            - file: tutorials/nb-to-package/intro
+              sections:
+              - file: tutorials/nb-to-package/sample.ipynb
+            - file: tutorials/nb-to-package/package
+            - file: tutorials/nb-to-package/community
+        - file: tutorials/mental-health/index
+        - file: tutorials/open-science/index.md
+          sections:
+          - file: tutorials/open-science/data-formats-and-metadata.ipynb
+            sections:
+            - file: tutorials/open-science/open_science_lesson.ipynb
+          - file: tutorials/open-science/licensing.md
+          - file: tutorials/open-science/archiving.md
+          - file: tutorials/open-science/resources.md
 - caption: Projects
   chapters:
     - file: projects/index
